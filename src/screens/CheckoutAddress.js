@@ -68,9 +68,11 @@ const CheckoutAddress = ({ history }) => {
         },
       };
       const { data } = await axios.get(
-        `https:/api.addipoli-puttus.com/user/verify-address?lat=${lat}&lon=${lon}`,
+        `https://api.addipoli-puttus.com/user/verify-address?lat=${lat}&lon=${lon}`,
         config
       );
+
+      console.log(data);
 
       dispatch(
         saveShippingAddress({
