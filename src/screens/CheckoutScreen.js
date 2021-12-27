@@ -93,7 +93,7 @@ const CheckoutScreen = ({ match, history }) => {
                     <li className="done-proceed">Login</li>
                     <li className="done-proceed">Address</li>
                     <li className="active">Shop Cart</li>
-                    <li>Payment Method</li>
+                    <li>Payment </li>
                     <li>Order Complete</li>
                   </ul>
                 </div>
@@ -189,7 +189,7 @@ const CheckoutScreen = ({ match, history }) => {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-lg-8">
+                  <div className="col-lg-8" style={{ paddingTop: "15px" }}>
                     <div
                       className="shop-cart-list wow fadeInDown"
                       data-wow-duration="1000ms"
@@ -233,7 +233,7 @@ const CheckoutScreen = ({ match, history }) => {
                       </div> */}
                     </div>
                   </div>
-                  <div className="col-lg-4">
+                  <div className="col-lg-4" style={{ paddingTop: "15px" }}>
                     <div
                       className="cart-total wow fadeInDown"
                       data-wow-duration="1000ms"

@@ -206,7 +206,7 @@ const CheckoutPayment = ({ history }) => {
                     <li className="done-proceed">Login</li>
                     <li className="done-proceed">Address</li>
                     <li className="done-proceed">Shop Cart</li>
-                    <li className="active">Payment Method</li>
+                    <li className="active">Payment</li>
                     <li>Order Complete</li>
                   </ul>
                 </div>
@@ -215,6 +215,7 @@ const CheckoutPayment = ({ history }) => {
                     class="col-md-7 col-sm-5 col-xs-12 wow fadeInDown"
                     data-wow-duration="1000ms"
                     data-wow-delay="300ms"
+                    style={{ paddingTop: "15px" }}
                   >
                     <div class="shop-checkout-right">
                       <div class="shop-checkout-box">
@@ -237,6 +238,11 @@ const CheckoutPayment = ({ history }) => {
                           })}
                         </div>
                       </div>
+                    </div>
+                    <div
+                      class="shop-checkout-right"
+                      style={{ marginTop: "15px" }}
+                    >
                       <h5>ADDRESS DETAILS</h5>
                       <div className="row">
                         <div className="col-md-12 col-sm-12 col-xs-12">
@@ -262,7 +268,10 @@ const CheckoutPayment = ({ history }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-5">
+                  <div
+                    className="col-md-5 col-sm-12 col-xs-12"
+                    style={{ paddingTop: "15px" }}
+                  >
                     <div
                       className="cart-total wow fadeInDown"
                       data-wow-duration="1000ms"
@@ -296,7 +305,7 @@ const CheckoutPayment = ({ history }) => {
                         <h5>PAYMENT METHODS</h5>
                       </div>
                       <div class="row">
-                        <div className="col-md-12">
+                        <div className="col-md-12 col-sm-12 col-xs-12">
                           <div className="form-check form-check-inline">
                             <input
                               className="form-check-input"
@@ -316,7 +325,7 @@ const CheckoutPayment = ({ history }) => {
                             </label>
                           </div>
                         </div>
-                        <div className="col-md-12">
+                        <div className="col-md-12 col-sm-12 col-xs-12">
                           <div className="form-check form-check-inline">
                             <input
                               className="form-check-input"
@@ -348,7 +357,7 @@ const CheckoutPayment = ({ history }) => {
                           </button>
                         </div>
                       ) : paymentMethod == "Cash on delivery" ? (
-                        <div className="proceed-check">
+                        <div className="proceed-check-placeorder">
                           <button
                             onClick={placeOrderHandler}
                             className="btn-primary-gold btn-medium"

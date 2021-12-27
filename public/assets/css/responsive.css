@@ -384,7 +384,8 @@
         top: -3px;
     }
     .book-md {
-        display: none;
+        display: flex;
+        float: right;
     }
     .book-sm {
         display: block;
@@ -919,7 +920,7 @@
         margin-top: 50px;
     }
     .shop-checkout-right {
-        margin-top: 50px;
+        margin-top: 20px;
     }
     ul.checkout-bar li {
         width: 30.5%;

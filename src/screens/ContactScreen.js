@@ -98,85 +98,32 @@ const ContactScreen = () => {
                   >
                     <Box sx={{ width: "100%", typography: "body1" }}>
                       <TabContext value={value}>
-                        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                        <Box sx={{ borderBottom: 0, borderColor: "divider" }}>
                           <TabList
                             onChange={handleChange}
                             aria-label="lab API tabs example"
                           >
                             <Tab
-                              label="Item One"
+                              className="contact-tab"
+                              label="Feedback"
                               value="1"
-                              style={{ outline: "none " }}
+                              style={{ outline: "none" }}
                             />
                             <Tab
-                              label="Item Two"
+                              className="contact-tab"
+                              label="Franchise"
                               value="2"
                               style={{ outline: "none " }}
                             />
                             <Tab
-                              label="Item Three"
+                              className="contact-tab"
+                              label="Complaint"
                               value="3"
                               style={{ outline: "none " }}
                             />
                           </TabList>
                         </Box>
                         <TabPanel value="1">
-                          {/* <h5 className="text-coffee">Drop your Feedback</h5> */}
-                          <form
-                            className="form"
-                            method="post"
-                            name="contact-form"
-                          >
-                            <div className="row">
-                              <div className="alert-container"></div>
-                              <div className="col-md-6 col-sm-6 col-xs-12">
-                                <label>First Name *</label>
-                                <input
-                                  name="first_name"
-                                  type="text"
-                                  required
-                                ></input>
-                              </div>
-                              <div className="col-md-6 col-sm-6 col-xs-12">
-                                <label>Last Name *</label>
-                                <input
-                                  name="last_name"
-                                  type="text"
-                                  required
-                                ></input>
-                              </div>
-                              <div className="col-md-6 col-sm-6 col-xs-12">
-                                <label>Email *</label>
-                                <input
-                                  name="email"
-                                  type="email"
-                                  required
-                                ></input>
-                              </div>
-                              <div className="col-md-6 col-sm-6 col-xs-12">
-                                <label>Phone Number *</label>
-                                <input
-                                  name="subject"
-                                  type="text"
-                                  required
-                                ></input>
-                              </div>
-                              <div className="col-md-12 col-sm-12 col-xs-12">
-                                <label>Your Message *</label>
-                                <textarea name="message" required></textarea>
-                              </div>
-                              <div className="col-md-12 col-sm-12 col-xs-12">
-                                <input
-                                  name="submit"
-                                  value="SEND MESSAGE"
-                                  className="btn-primary-gold btn-medium"
-                                  type="submit"
-                                ></input>
-                              </div>
-                            </div>
-                          </form>
-                        </TabPanel>
-                        <TabPanel value="2">
                           {" "}
                           <h5 className="text-coffee">Drop your Feedback</h5>
                           <form
@@ -185,42 +132,168 @@ const ContactScreen = () => {
                             name="contact-form"
                           >
                             <div className="row">
+                              <div className="alert-container">
+                                <div className="col-md-6 col-sm-6 col-xs-12">
+                                  <label className="label-contact">
+                                    Name *
+                                  </label>
+                                  <input
+                                    className="label-contact-input"
+                                    name="first_name"
+                                    type="text"
+                                    placeholder="Enter Your Name"
+                                    required
+                                  ></input>
+                                </div>
+                                <div className="col-md-6 col-sm-6 col-xs-12">
+                                  <label className="label-contact">
+                                    Email *
+                                  </label>
+                                  <input
+                                    className="label-contact-input"
+                                    name="email"
+                                    type="email"
+                                    placeholder="Enter Your Email-ID"
+                                    required
+                                  ></input>
+                                </div>
+                                <div className="col-md-6 col-sm-6 col-xs-12">
+                                  <label className="label-contact">
+                                    Phone Number *
+                                  </label>
+                                  <input
+                                    className="label-contact-input"
+                                    name="subject"
+                                    type="text"
+                                    placeholder="Enter Your Phone Number"
+                                    required
+                                  ></input>
+                                </div>
+                                <div className="col-md-6 col-sm-6 col-xs-12">
+                                  <label className="label-contact">
+                                    Select Your Favorite *
+                                  </label>
+                                  <select
+                                    className="label-contact-input-drop"
+                                    aria-label="Default select example"
+                                  >
+                                    <option selected>
+                                      Select your favorite Item
+                                    </option>
+                                    <option value="1">Addipoli Puttu</option>
+                                    <option value="2">Addipoli Curry</option>
+                                    <option value="3">Addipoli Wrappies</option>
+                                    <option value="3">Addipoli Special</option>
+                                  </select>
+                                </div>
+                                <div className="col-md-12 col-sm-12 col-xs-12">
+                                  <label className="label-contact">
+                                    Your Message *
+                                  </label>
+                                  <textarea
+                                    className="label-contact-input"
+                                    name="message"
+                                    placeholder=" Drop your feedback"
+                                    required
+                                  ></textarea>
+                                </div>
+                                <div className="col-md-12 col-sm-12 col-xs-12">
+                                  <input
+                                    name="submit"
+                                    value="SEND MESSAGE"
+                                    className="btn-primary-gold btn-medium"
+                                    type="submit"
+                                  ></input>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                        </TabPanel>
+                        <TabPanel value="2">
+                          {" "}
+                          <h5 className="text-coffee">Join With Our Hands</h5>
+                          <form
+                            className="form"
+                            method="post"
+                            name="contact-form"
+                          >
+                            <div className="row">
                               <div className="alert-container"></div>
                               <div className="col-md-6 col-sm-6 col-xs-12">
-                                <label>First Name *</label>
+                                <label className="label-contact">
+                                  First Name *
+                                </label>
                                 <input
+                                  className="label-contact-input"
                                   name="first_name"
                                   type="text"
+                                  placeholder="Enter Your First Name"
                                   required
                                 ></input>
                               </div>
                               <div className="col-md-6 col-sm-6 col-xs-12">
-                                <label>Last Name *</label>
+                                <label className="label-contact">
+                                  Last Name *
+                                </label>
                                 <input
-                                  name="last_name"
+                                  className="label-contact-input"
+                                  name="first_name"
                                   type="text"
+                                  placeholder="Enter Your Last Name"
                                   required
                                 ></input>
                               </div>
                               <div className="col-md-6 col-sm-6 col-xs-12">
-                                <label>Email *</label>
+                                <label className="label-contact">Email *</label>
                                 <input
+                                  className="label-contact-input"
                                   name="email"
                                   type="email"
+                                  placeholder="Enter Your Email-ID"
                                   required
                                 ></input>
                               </div>
                               <div className="col-md-6 col-sm-6 col-xs-12">
-                                <label>Phone Number *</label>
+                                <label className="label-contact">
+                                  Phone Number *
+                                </label>
                                 <input
+                                  className="label-contact-input"
                                   name="subject"
                                   type="text"
+                                  placeholder="Enter Your Phone Number"
+                                  required
+                                ></input>
+                              </div>
+                              <div className="col-md-6 col-sm-6 col-xs-12">
+                                <label className="label-contact">City *</label>
+                                <input
+                                  className="label-contact-input"
+                                  name="subject"
+                                  type="text"
+                                  placeholder="Enter Your City"
+                                  required
+                                ></input>
+                              </div>
+                              <div className="col-md-6 col-sm-6 col-xs-12">
+                                <label className="label-contact">State *</label>
+                                <input
+                                  className="label-contact-input"
+                                  name="subject"
+                                  type="text"
+                                  placeholder="Enter Your State"
                                   required
                                 ></input>
                               </div>
                               <div className="col-md-12 col-sm-12 col-xs-12">
-                                <label>Your Message *</label>
-                                <textarea name="message" required></textarea>
+                                <label className="label-contact">
+                                  Your Message *
+                                </label>
+                                <textarea
+                                  className="label-contact-input"
+                                  name="message"
+                                  required
+                                ></textarea>
                               </div>
                               <div className="col-md-12 col-sm-12 col-xs-12">
                                 <input
@@ -235,7 +308,7 @@ const ContactScreen = () => {
                         </TabPanel>
                         <TabPanel value="3">
                           {" "}
-                          {/* <h5 className="text-coffee">Drop your Feedback</h5> */}
+                          <h5 className="text-coffee">Drop your Complaint</h5>
                           <form
                             className="form"
                             method="post"
@@ -244,40 +317,59 @@ const ContactScreen = () => {
                             <div className="row">
                               <div className="alert-container"></div>
                               <div className="col-md-6 col-sm-6 col-xs-12">
-                                <label>First Name *</label>
+                                <label className="label-contact">Name *</label>
                                 <input
+                                  className="label-contact-input"
                                   name="first_name"
                                   type="text"
+                                  placeholder="Enter Your Name"
                                   required
                                 ></input>
                               </div>
                               <div className="col-md-6 col-sm-6 col-xs-12">
-                                <label>Last Name *</label>
+                                <label className="label-contact">
+                                  Order ID *
+                                </label>
                                 <input
-                                  name="last_name"
+                                  className="label-contact-input"
+                                  name="first_name"
                                   type="text"
+                                  placeholder="Enter Your Order-ID"
                                   required
                                 ></input>
                               </div>
                               <div className="col-md-6 col-sm-6 col-xs-12">
-                                <label>Email *</label>
+                                <label className="label-contact">Email *</label>
                                 <input
+                                  className="label-contact-input"
                                   name="email"
                                   type="email"
+                                  placeholder="Enter Your Email-ID"
                                   required
                                 ></input>
                               </div>
                               <div className="col-md-6 col-sm-6 col-xs-12">
-                                <label>Phone Number *</label>
+                                <label className="label-contact">
+                                  Phone Number *
+                                </label>
                                 <input
+                                  className="label-contact-input"
                                   name="subject"
                                   type="text"
+                                  placeholder="Enter Your Phone Number"
                                   required
                                 ></input>
                               </div>
                               <div className="col-md-12 col-sm-12 col-xs-12">
-                                <label>Your Message *</label>
-                                <textarea name="message" required></textarea>
+                                <label className="label-contact">
+                                  Your Message *
+                                </label>
+                                <textarea
+                                  className="label-contact-input"
+                                  name="message"
+                                  placeholder=" Drop your Message"
+                                  required
+                                ></textarea>
                               </div>
                               <div className="col-md-12 col-sm-12 col-xs-12">
                                 <input
@@ -302,31 +394,31 @@ const ContactScreen = () => {
                     <ul className="time-list">
                       <li>
                         <span className="week-name">Monday</span>
-                        <span>8.00 AM - 9.00 PM</span>
+                        <span>6.30 AM - 9.30 PM</span>
                       </li>
                       <li>
                         <span className="week-name">Tuesday</span>
-                        <span>8.00 AM - 9.00 PM</span>
+                        <span>6.30 AM - 9.30 PM</span>
                       </li>
                       <li>
                         <span className="week-name">Wednesday</span>
-                        <span>8.00 AM - 9.00 PM</span>
+                        <span>6.30 AM - 9.30 PM</span>
                       </li>
                       <li>
                         <span className="week-name">Thursday</span>
-                        <span>8.00 AM - 9.00 PM</span>
+                        <span>6.30 AM - 9.30 PM</span>
                       </li>
                       <li>
                         <span className="week-name">Friday</span>
-                        <span>8.00 AM - 9.00 PM</span>
+                        <span>6.30 AM - 9.30 PM</span>
                       </li>
                       <li>
                         <span className="week-name">Saturday</span>
-                        <span>8.00 AM - 9.00 PM</span>
+                        <span>6.30 AM - 9.30 PM</span>
                       </li>
                       <li>
                         <span className="week-name">Sunday</span>
-                        <span>8.00 AM - 9.00 PM</span>
+                        <span>6.30 AM - 9.30 PM</span>
                       </li>
                     </ul>
                   </div>
