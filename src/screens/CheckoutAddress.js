@@ -60,47 +60,42 @@ const CheckoutAddress = ({ history }) => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    const config = {
-      headers: {
-        "content-Type": "application/json",
-        "x-access-token": `${userInfo.accessToken}`,
-      },
-    };
-    axios
-      .get(
+    try {
+      const config = {
+        headers: {
+          "content-Type": "application/json",
+          "x-access-token": `${userInfo.accessToken}`,
+        },
+      };
+      const { data } = await axios.get(
         `https:/api.addipoli-puttus.com/user/verify-address?lat=${lat}&lon=${lon}`,
         config
-      )
-      .then((res) => {
-        const verifiedaddress = res.data;
-        console.log(verifiedaddress);
+      );
 
-        dispatch(
-          saveShippingAddress({
-            name,
-            phoneNumber,
-            address,
-            area,
-            pincode,
-            city,
-            country,
-            states,
-            landmark,
-            addressOptions,
-            lat,
-            lon,
-            hubId: verifiedaddress.hubId,
-            distance: verifiedaddress.distance,
-            hubs: "available",
-          })
-        );
+      dispatch(
+        saveShippingAddress({
+          name,
+          phoneNumber,
+          address,
+          area,
+          pincode,
+          city,
+          country,
+          states,
+          landmark,
+          addressOptions,
+          lat,
+          lon,
+          hubId: data.hubId,
+          distance: data.distance,
+          hubs: "available",
+        })
+      );
 
-        history.push("/checkout");
-      })
-
-      .catch((err) => setverifyaddError(err.response.data.message));
-
-    // dispatch(verifyAddress(lat, lon));
+      history.push("/checkout");
+    } catch (error) {
+      setverifyaddError(error.response.data.message);
+    }
   };
 
   //geocoding
@@ -110,8 +105,8 @@ const CheckoutAddress = ({ history }) => {
   Geocode.setLocationType("ROOFTOP");
 
   const onMarkerDragEnd = (e) => {
-    const lat = e.latLng.lat() || lat;
-    const lng = e.latLng.lng() || lng;
+    const lat = e.latLng.lat();
+    const lng = e.latLng.lng();
     setCurrentPosition({ lat, lng });
     setlatitude(lat);
     setlongitude(lng);
@@ -230,85 +225,6 @@ const CheckoutAddress = ({ history }) => {
     height: "50vh",
     width: "100%",
   };
-
-  const success = (position) => {
-    const currentPosition = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude,
-    };
-    setCurrentPosition(currentPosition);
-    setlatitude(position.coords.latitude);
-    setlongitude(position.coords.longitude);
-
-    Geocode.fromLatLng(
-      position.coords.latitude,
-      position.coords.longitude
-    ).then(
-      (response) => {
-        const address = response.results[0].formatted_address;
-        setaddress(address);
-
-        let area, city, state, country, pincode;
-        for (
-          let i = 0;
-          i < response.results[0].address_components.length;
-          i++
-        ) {
-          for (
-            let j = 0;
-            j < response.results[0].address_components[i].types.length;
-            j++
-          ) {
-            switch (response.results[0].address_components[i].types[j]) {
-              case "locality":
-                city = response.results[0].address_components[i].long_name;
-                setcity(city);
-                break;
-              case "sublocality":
-                area = response.results[0].address_components[i].long_name;
-                setArea(area);
-                break;
-              case "administrative_area_level_1":
-                state = response.results[0].address_components[i].long_name;
-                setstates(state);
-                break;
-              case "postal_code":
-                pincode = response.results[0].address_components[i].long_name;
-                setpincode(pincode);
-                break;
-              case "country":
-                country = response.results[0].address_components[i].long_name;
-                setcountry(country);
-                console.log(country);
-                break;
-            }
-          }
-        }
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  };
-  // save shipping address
-
-  // const proceedWithAddress = ({e, address) => {
-  //   e.preventDefault();
-
-  //   dispatch(
-  //     saveShippingAddress({
-  //       name: address.name,
-  //       phoneNumber: address.phoneNumber,
-  //       address: address.address,
-  //       area: address.area,
-  //       pincode: address.pincode,
-  //       landmark: address.landmark,
-  //       shortNote,
-  //       addressOptions,
-  //     })
-  //   );
-  //   history.push("/payment");
-  // };
 
   return (
     <div>
@@ -440,7 +356,6 @@ const CheckoutAddress = ({ history }) => {
                       <form
                         onSubmit={submitHandler}
                         className="form"
-                        method="post"
                         name="contact-form"
                       >
                         <div className="row">
@@ -470,7 +385,6 @@ const CheckoutAddress = ({ history }) => {
                             <button
                               class="btn-primary-gold-address btn-medium"
                               onClick={getltlnfromadd}
-                              type="submit"
                               style={{ width: "20%" }}
                             >
                               search

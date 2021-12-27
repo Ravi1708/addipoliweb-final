@@ -417,8 +417,8 @@ const Header = ({ location, match }) => {
           states,
           lat,
           lon,
-          nearbyhub: undefined,
-          distance: undefined,
+          nearbyhub: "not available",
+          distance: "0m",
           hubs: "unavailable",
         })
       );
