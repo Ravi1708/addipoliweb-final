@@ -1,0 +1,70 @@
+.header-bottom
+  .header-info
+  .header-info-inner
+  .header-collect
+  form
+  .delivery-type {
+  display: flex;
+}
+
+.header-bottom
+  .header-info
+  .header-info-inner
+  .header-collect
+  form
+  .form-check {
+  margin-right: 20px;
+}
+
+.header-bottom
+  .header-info
+  .header-info-inner
+  .header-collect
+  form
+  .form-check
+  label {
+  color: #fff;
+}
+
+.cart-popup {
+  width: 400px;
+  z-index: 1002;
+  height: 100%;
+  right: 0;
+  position: fixed;
+}
+
+.login-popup {
+  z-index: 1002;
+  height: 100%;
+  right: 0;
+  position: fixed;
+  display: none;
+}
+.signup-popup {
+  z-index: 1002;
+  height: 100%;
+  right: 0;
+  position: fixed;
+  display: none;
+}
+
+.close1 {
+  float: right;
+  font-size: 18px;
+  margin-top: -7px;
+  margin-right: -2px;
+  font-weight: 600;
+  color: black;
+  cursor: pointer;
+}
+
+.close2 {
+  float: right;
+  font-size: 18px;
+  margin-top: 8px;
+  margin-right: 0px;
+  font-weight: 600;
+  color: black;
+  cursor: pointer;
+}

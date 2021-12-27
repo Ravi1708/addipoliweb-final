@@ -1,0 +1,141 @@
+/* detail */
+@media (max-width: 576px) {
+  .shop-dish {
+    width: 50% !important;
+  }
+}
+
+.side-add-cart {
+  height: 300px;
+  overflow: auto;
+}
+
+.offer-text {
+  color: black;
+}
+
+.p-2 {
+  padding: 10px !important;
+}
+
+.rounded {
+  border-radius: 6px !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="email"],
+input[type="number"] {
+  height: 50px;
+  width: 100%;
+  border: 1px solid #e5e5ee;
+  -webkit-border-radius: 80px;
+  -moz-border-radius: 80px;
+  -ms-border-radius: 80px;
+  -o-border-radius: 80px;
+  border-radius: 80px;
+  padding: 0 30px;
+  margin-bottom: 0px;
+  outline: none;
+}
+.media {
+  margin-top: 0px;
+}
+
+/* .count-number .btn {
+    padding: 4px 5px;
+    font-size: 10px;
+    border-radius: 0px;
+    border: none;
+} */
+
+span.count-number.float-right {
+  border: 1px solid #6c757d;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* .count-number-input {
+    width: 24px !important;
+    text-align: center;
+    margin: 0 -4px;
+    background: #6c757d;
+    border: none !important;
+    color: #fff !important;
+    height: 26px !important;
+    border-radius: 0px !important;
+    vertical-align: bottom;
+} */
+
+.generator-bg {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#dd646e+1,fe792b+100 */
+  background: #dd646e;
+  /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #dd646e 1%, #fe792b 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #dd646e 1%, #fe792b 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #dd646e 1%, #fe792b 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dd646e', endColorstr='#fe792b', GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+}
+
+.restaurant-detailed-earn-pts .img-fluid.float-left {
+  height: 61px;
+}
+
+.card-icon-overlap {
+  overflow: hidden;
+  position: relative;
+}
+
+.text-black {
+  color: #000000;
+}
+
+.icon-overlap {
+  bottom: -23px;
+  font-size: 74px;
+  opacity: 0.23;
+  position: absolute;
+  right: -32px;
+}
+
+.cart-count {
+  width: 25px;
+  height: 27px;
+  font-size: 16px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  color: #191717;
+  cursor: pointer;
+  background: transparent;
+  box-shadow: inset -2px -2px 2px rgb(255 255 255 / 20%),
+    inset 2px 5px 15px rgb(0 0 0 / 35%);
+}
+
+.cart-count:active {
+  box-shadow: inset 2px 2px 2px rgba(255, 255, 255, 0.1),
+    inset -2px -5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.count-nom {
+  border-radius: 5px !important;
+  outline: none;
+  border: none;
+  padding: 5px 0 !important;
+  width: 50px !important;
+  height: 28px !important;
+  text-align: center;
+  font-size: 16px;
+  color: #fff;
+  margin: 0 2px 4px !important;
+  background: transparent;
+  box-shadow: inset -2px -2px 2px rgb(255 255 255 / 20%),
+    inset 2px 5px 15px rgb(0 0 0 / 35%);
+}
