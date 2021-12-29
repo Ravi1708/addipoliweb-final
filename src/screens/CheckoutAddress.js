@@ -393,8 +393,9 @@ const CheckoutAddress = ({ history }) => {
                             </button>
                           </div>
                           <div className="col-md-6 col-sm-6 col-xs-12">
-                            <label>Name*</label>
+                            <label className="label-contact">Name*</label>
                             <input
+                              className="label-contact-input"
                               name=""
                               type="text"
                               value={name}
@@ -403,8 +404,11 @@ const CheckoutAddress = ({ history }) => {
                             ></input>
                           </div>
                           <div className="col-md-6 col-sm-6 col-xs-12">
-                            <label>Phone Number*</label>
+                            <label className="label-contact">
+                              Phone Number*
+                            </label>
                             <input
+                              className="label-contact-input"
                               name=""
                               value={phoneNumber}
                               type="text"
@@ -413,8 +417,9 @@ const CheckoutAddress = ({ history }) => {
                             ></input>
                           </div>
                           <div className="col-md-6 col-sm-6 col-xs-12">
-                            <label>House / Flat / Block No.*</label>
+                            <label className="label-contact">House No*</label>
                             <input
+                              className="label-contact-input"
                               name={address}
                               type="text"
                               value={address}
@@ -423,8 +428,11 @@ const CheckoutAddress = ({ history }) => {
                             ></input>
                           </div>
                           <div className="col-md-6 col-sm-6 col-xs-12">
-                            <label>Apartment / Road / Area*</label>
+                            <label className="label-contact">
+                              Apartment / Road / Area*
+                            </label>
                             <input
+                              className="label-contact-input"
                               name=""
                               type="text"
                               value={area}
@@ -433,8 +441,9 @@ const CheckoutAddress = ({ history }) => {
                             />
                           </div>
                           <div className="col-md-6 col-sm-6 col-xs-12">
-                            <label>Pincode*</label>
+                            <label className="label-contact">Pincode*</label>
                             <input
+                              className="label-contact-input"
                               name=""
                               type="text"
                               value={pincode}
@@ -443,8 +452,11 @@ const CheckoutAddress = ({ history }) => {
                             />
                           </div>
                           <div className="col-md-6 col-sm-6 col-xs-12">
-                            <label>Near Landmark*</label>
+                            <label className="label-contact">
+                              Near Landmark*
+                            </label>
                             <input
+                              className="label-contact-input"
                               name=""
                               type="text"
                               value={landmark}
@@ -453,8 +465,9 @@ const CheckoutAddress = ({ history }) => {
                             />
                           </div>
                           <div className="col-md-12 col-sm-12 col-xs-12">
-                            <label>Short Note</label>
+                            <label className="label-contact">Short Note</label>
                             <textarea
+                              className="label-contact-input"
                               name="message"
                               value={shortNote}
                               onChange={(e) => setShortNote(e.target.value)}

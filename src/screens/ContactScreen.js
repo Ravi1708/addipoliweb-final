@@ -6,7 +6,7 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 
 const ContactScreen = () => {
-  const [value, setValue] = React.useState("one");
+  const [value, setValue] = React.useState("1");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -107,7 +107,9 @@ const ContactScreen = () => {
                               className="contact-tab"
                               label="Feedback"
                               value="1"
-                              style={{ outline: "none" }}
+                              style={{
+                                outline: "none",
+                              }}
                             />
                             <Tab
                               className="contact-tab"

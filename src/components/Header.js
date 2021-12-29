@@ -139,11 +139,15 @@ const Header = ({ location, match }) => {
   const checkoutHandler = (e) => {
     e.preventDefault();
     setopencart(false);
-    if (userInfo) {
-      history.push("/checkoutaddress");
+    if (shippingAddress.hubs == "unavailable") {
+      setShowToast(true);
     } else {
-      setredirect(true);
-      setopensignin(true);
+      if (userInfo) {
+        history.push("/checkoutaddress");
+      } else {
+        setredirect(true);
+        setopensignin(true);
+      }
     }
   };
 
@@ -494,7 +498,10 @@ const Header = ({ location, match }) => {
                   <div className="social-top">
                     <ul>
                       <li>
-                        <a href="https://www.facebook.com/profile.php?id=100074803072366">
+                        <a
+                          href="https://www.facebook.com/profile.php?id=100074803072366"
+                          target="_blank"
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="19"
@@ -509,7 +516,10 @@ const Header = ({ location, match }) => {
                       </li>
 
                       <li>
-                        <a href="https://www.instagram.com/addipoli_puttus/">
+                        <a
+                          href="https://www.instagram.com/addipoli_puttus/"
+                          target="_blank"
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="19"
@@ -523,7 +533,7 @@ const Header = ({ location, match }) => {
                         </a>
                       </li>
                       <li>
-                        <a href="https://twitter.com/APuttus">
+                        <a href="https://twitter.com/APuttus" target="_blank">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="19"
@@ -1183,15 +1193,15 @@ const Header = ({ location, match }) => {
           <div>
             <form style={{ display: "flex", margin: "15px" }}>
               <input
+                className="form-drop-select"
                 value={address}
                 onChange={(e) => setaddress(e.target.value)}
                 placeholder="Type here to search address"
-                style={{ width: "80%" }}
+                style={{ marginRight: "10px" }}
               />
               <Button
                 variant="btn btn-primary-gold btn-popup"
                 onClick={getltlnfromadd}
-                style={{ width: "20%" }}
               >
                 search
               </Button>

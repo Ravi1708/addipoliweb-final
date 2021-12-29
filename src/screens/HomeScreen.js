@@ -111,7 +111,6 @@ const HomeScreen = ({ match, history }) => {
 
   const checkoutHandler = (e) => {
     e.preventDefault();
-    console.log(shippingAddress);
 
     if (shippingAddress.hubs == "unavailable") {
       setShowToast(true);

@@ -68,18 +68,21 @@ const CheckoutPayment = ({ history }) => {
                 });
                 dispatch(
                   createOrder({
+                    orderType: "Delivery",
                     orderItems,
                     shippingAddress: cart.shippingAddress,
                     paymentMethod: paymentMethod,
-                    itemsPrice: cart.itemsPrice,
-                    shippingPrice: cart.shippingPrice,
-                    taxPrice: cart.taxPrice,
+                    basePrice: parseFloat(cart.basePrice),
+                    deliveryCharge: parseFloat(cart.deliveryCharge),
+                    tax: parseFloat(cart.taxPrice),
+                    couponDiscount: parseFloat(cart.couponDiscount),
                     totalPrice: parseFloat(cart.totalPrice),
                     payprice: cart.payprice,
                     paymentResult: "Paid",
                     deliveryStatus: "Order Placed",
                     orderStatus: "Ongoing",
                     receiptId,
+                    hubId: cart.shippingAddress.hubId,
                   })
                 );
                 localStorage.removeItem("cartItems");
