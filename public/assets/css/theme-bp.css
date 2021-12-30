@@ -2574,7 +2574,7 @@ textarea {
 }
 
 .modal-body {
-  padding: 5px 10px 0px 10px;
+  padding: 15px 15px 10px;
 }
 
 .modal-content {
@@ -2813,7 +2813,7 @@ textarea {
   font-size: 30px;
 }
 .very_large_text{
-  text-shadow: 3px 2px 0 black;
+  text-shadow: 5px 2px 0 black;
 }
 
 .button-white {
@@ -4830,7 +4830,7 @@ textarea {
   margin-bottom: 25px;
   text-transform: uppercase;
   font-weight: bold;
-  text-shadow: 3px 2px 0 black;
+  text-shadow: 5px 2px 0 black;
 }
 
 .breadcrumb-inner a {
@@ -7811,13 +7811,13 @@ body main .team-page {
 }
 .form-drop-select{
   padding: 5px 5px 5px 10px;
-  font-size: 15px;   
+  font-size: 18px;   
   font-weight: 400;  
   text-align: center;
   border: 2px solid #dddddd;
   border-radius: 50px;
   width: 100%;
-  height: 35px;
+  height: 40px;
   margin-bottom: 5px;
   margin-right: 10px;
 }
@@ -7878,8 +7878,15 @@ padding: 0px 5px 0px 0px;
   border-bottom: 1px solid #dddddd !important;
   width: 33% !important;
 }
-.shop-card-header{
-  margin-bottom: 3px;
+.close-tab :hover{
+  color: #04e04c !important;
+}
+.contact-tab :active {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  background-color: #f4f2ed !important;
+  color: #04e04c !important;
+  border: 2px solid #dddddd !important;
 }
 @media (max-width: 903px) and (min-width: 767px){
   .header-info {
@@ -7891,14 +7898,6 @@ padding: 0px 5px 0px 0px;
     justify-content: end;
     align-items: center;
     justify-items: center;
-  }
-  .shop-card-header{
-    margin-bottom: 5px;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
   }
   .very_large_text{
     text-shadow: 3px 2px 0 black;
@@ -7924,10 +7923,7 @@ padding: 0px 5px 0px 0px;
     .header-collect{
       font-size: 12px;
     }
-    .btn-medium{
-      font-size: 12px;
-      width: 90%;
-    }
+        
 }
 @media (max-width: 766px) and (min-width: 580px){
   .delivery-type{
@@ -7942,14 +7938,6 @@ padding: 0px 5px 0px 0px;
   }  
   .header-collect{
     font-size: 12px;
-  }
-  .shop-card-header{
-    margin-bottom: 5px;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
   }
 }
 @media (max-width: 579px) and (min-width: 530px){
@@ -7971,14 +7959,6 @@ padding: 0px 5px 0px 0px;
   .header-collect{
     font-size: 12px;
   }
-  .shop-card-header{
-    margin-bottom: 5px;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
-  }
 }
 @media (max-width: 529px) and (min-width: 490px){
   .modal-dialog {
@@ -7987,7 +7967,7 @@ padding: 0px 5px 0px 0px;
     margin-left: 20px;
   }
   .modal-body{
-    padding:5px 5px 5px 5px;
+    padding: 10px 25px 15px;
    }
    .very_large_text{
     text-shadow: 3px 2px 0 black;
@@ -8002,14 +7982,6 @@ padding: 0px 5px 0px 0px;
     width: 100%;
     height: 250px;
   }
-  .shop-card-header{
-    margin-bottom: 5px;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
-  }
   
 }
 @media (max-width: 489px) and (min-width: 440px){
@@ -8019,7 +7991,7 @@ padding: 0px 5px 0px 0px;
     margin-left: 50px;
   }
    .modal-body{
-    padding: 5px 5px 5px 5px;
+    padding: 10px 25px 15px;
    }
    .form-drop-label{
     font-size: 15px;
@@ -8037,24 +8009,9 @@ padding: 0px 5px 0px 0px;
   .header-collect{
     font-size: 12px;
   }
-  .cart-popup {
-    width: 100% !important;
-  }
   .shop-product{
     width: 100%;
     height: 250px;
-  }
-  .shop-card-header{
-    margin-bottom: 5px;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
-  }
-  .btn-medium{
-    font-size: 12px;
-    width: 90%;
   }
 }
 @media (max-width: 439px) and (min-width: 400px){
@@ -8064,7 +8021,7 @@ padding: 0px 5px 0px 0px;
     margin-left: 35px;
   }
    .modal-body{
-    padding: 5px 5px 5px 5px;
+    padding: 10px 25px 15px;
    }
    .form-drop-label{
     font-size: 15px;
@@ -8076,17 +8033,14 @@ padding: 0px 5px 0px 0px;
    .login-popup {
      width: 100%;
    }
-   .cart-popup {
-    width: 100% !important;
-  }
    .signup-popup{
     width: 100%;
   }
   .very_large_text{
-    text-shadow: 2px 2px 0 black;
+    text-shadow: 3px 2px 0 black;
   }
   .breadcrumb-inner h2 {
-    text-shadow: 2px 2px 0 black;
+    text-shadow: 3px 2px 0 black;
   }
   .header-collect{
     font-size: 12px;
@@ -8105,51 +8059,12 @@ padding: 0px 5px 0px 0px;
     align-items: center;
     justify-items: center;
   }
-  .shop-card-header{
-    margin-bottom: 5px;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
-  }
   .form-check{
     margin-right: 0px !important;
   }
   .form-check-input{
     margin-left: 5px !important;
     margin-left: 5px !important;
-  }
-  input[type='radio']:after {
-    width: 18px !important;
-    height: 18px !important;
-    border-radius: 18px !important;
-    top: -1px !important;
-    left: -1px !important;
-    position: relative !important;
-    background-color: #ffffff !important;
-    content: '' !important;
-    display: inline-block !important;
-    visibility: visible !important;
-    border: 2px solid #04e04c !important;
-  }
-  
-  input[type='radio']:checked:after {
-    width: 18px !important;
-    height: 18px !important;
-    border-radius: 18px !important;
-    top: -1px !important;
-    left: -1px !important;
-    position: relative !important;
-    background-color: #04e04c !important;
-    content: ''!important;
-    display: inline-block !important;
-    visibility: visible !important;
-    border: 2px solid white !important;
-  }
-  .btn-medium{
-    font-size: 12px;
-    width: 90%;
   }
 }
 @media (max-width: 399px) and (min-width: 340px){
@@ -8159,7 +8074,7 @@ padding: 0px 5px 0px 0px;
     margin-left: 25px;    
   }
    .modal-body{
-    padding: 5px 5px 5px 5px;
+    padding: 10px 25px 15px;
    }
    .form-drop-label{
     font-size: 15px;
@@ -8198,14 +8113,6 @@ padding: 0px 5px 0px 0px;
     align-items: center;
     justify-items: center;
   }
-  .shop-card-header{
-    margin-bottom: 5px;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
-  }
   .form-check{
     margin-right: 0px !important;
   }
@@ -8214,11 +8121,11 @@ padding: 0px 5px 0px 0px;
     margin-left: 3px !important;
   }
   input[type='radio']:after {
-    width: 15px !important;
-    height: 15px !important;
-    border-radius: 15px !important;
-    top: -1px !important;
-    left: -1px !important;
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 12px !important;
+    top: 1px !important;
+    left: 1px !important;
     position: relative !important;
     background-color: #ffffff !important;
     content: '' !important;
@@ -8228,21 +8135,17 @@ padding: 0px 5px 0px 0px;
   }
   
   input[type='radio']:checked:after {
-    width: 15px !important;
-    height: 15px !important;
-    border-radius: 15px !important;
-    top: -1px !important;
-    left: -1px !important;
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 12px !important;
+    top: 1px !important;
+    left: 1px !important;
     position: relative !important;
     background-color: #04e04c !important;
     content: ''!important;
     display: inline-block !important;
     visibility: visible !important;
     border: 2px solid white !important;
-  }
-  .btn-medium{
-    font-size: 12px;
-    width: 90%;
   }
 }
 @media (max-width: 339px) and (min-width: 300px){
@@ -8252,7 +8155,7 @@ padding: 0px 5px 0px 0px;
     margin-left: 20px;
   }
    .modal-body{
-    padding: 5px 5px 5px 5px;
+    padding: 10px 25px 15px;
    }
    .form-drop-label{
     font-size: 15px;
@@ -8302,9 +8205,6 @@ padding: 0px 5px 0px 0px;
     align-items: center;
     justify-items: center;
   }
-  .shop-card-header{
-    display: none;
-  }
   .form-check{
     margin-right: 0px !important;
   }
@@ -8313,11 +8213,11 @@ padding: 0px 5px 0px 0px;
     margin-left: 1px !important;
   }
   input[type='radio']:after {
-    width: 15px !important;
-    height: 15px !important;
-    border-radius: 15px !important;
-    top: -1px !important;
-    left: -1px !important;
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 12px !important;
+    top: 1px !important;
+    left: 1px !important;
     position: relative !important;
     background-color: #ffffff !important;
     content: '' !important;
@@ -8327,11 +8227,11 @@ padding: 0px 5px 0px 0px;
   }
   
   input[type='radio']:checked:after {
-    width: 15px !important;
-    height: 15px !important;
-    border-radius: 15px !important;
-    top: -1px !important;
-    left: -1px !important;
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 12px !important;
+    top: 1px !important;
+    left: 1px !important;
     position: relative !important;
     background-color: #04e04c !important;
     content: ''!important;
@@ -8347,7 +8247,7 @@ padding: 0px 5px 0px 0px;
     margin-left: 10px;
   }
    .modal-body{
-    padding: 5px 5px 5px 5px;
+    padding: 10px 25px 15px;
    }
    .form-drop-label{
     font-size: 14px;
@@ -8396,9 +8296,6 @@ padding: 0px 5px 0px 0px;
     justify-content: end;
     align-items: center;
     justify-items: center;
-  }
-  .shop-card-header{
-    display: none;
   }
   .form-check{
     margin-right: 0px !important;

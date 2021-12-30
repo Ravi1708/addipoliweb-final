@@ -81,7 +81,7 @@ const CheckoutPayment = ({ history }) => {
                     paymentResult: "Paid",
                     deliveryStatus: "Order Placed",
                     orderStatus: "Ongoing",
-                    receiptId,
+                    receiptId: "null",
                     hubId: cart.shippingAddress.hubId,
                   })
                 );

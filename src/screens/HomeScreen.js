@@ -23,6 +23,11 @@ import axios from "axios";
 import Banner from "../components/Banner";
 import HomeSlider from "../components/HomeSlider";
 import { LinkContainer } from "react-router-bootstrap";
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
 
 const HomeScreen = ({ match, history }) => {
   const [opencart, setopencart] = useState(false);
@@ -42,6 +47,12 @@ const HomeScreen = ({ match, history }) => {
   const [ErrorSignup, setErrorSignup] = useState();
 
   const [showToast, setShowToast] = useState(false);
+
+  const [cat, setCat] = React.useState("1");
+
+  const handleCat = (event, newValue) => {
+    setCat(newValue);
+  };
 
   const dispatch = useDispatch();
 
@@ -486,59 +497,183 @@ const HomeScreen = ({ match, history }) => {
                       className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                       style={{ position: "relative" }}
                     >
-                      <Route path="/" exact>
-                        <div className="portfolioContainer row">
-                          {products
-                            .filter(
-                              (filteredproducts) =>
-                                filteredproducts.category != "Combo"
-                            )
-                            .map((combo) => {
-                              return (
-                                <div
-                                  className={`col-lg-3 col-md-6 col-sm-12 col-xs-12 fadeInDown ${combo.category}`}
-                                  data-wow-duration="1000ms"
-                                  data-wow-delay="300ms"
-                                >
-                                  <ProductCard
-                                    product={combo}
-                                    handleCart={handleCart}
-                                    key={combo.id}
-                                  />
-                                </div>
-                              );
-                            })}
-                        </div>
-                      </Route>
-                      <Route path="/:id">
-                        <ProductCard />
-                        {/* <div className="portfolioContainer row">
-                          {products
-                            .filter(
-                              (filteredproducts) =>
-                                filteredproducts.category == "puttu"
-                            )
-                            .map((combo) => {
-                              return (
-                                <div
-                                  className={`col-md-3 col-sm-3 col-xs-6 fadeInDown ${combo.category}`}
-                                  data-wow-duration="1000ms"
-                                  data-wow-delay="300ms"
-                                >
-                                  <ProductCard
-                                    product={combo}
-                                    handleCart={handleCart}
-                                    key={combo.id}
-                                  />
-                                </div>
-                              );
-                            })}
-                        </div> */}
-                      </Route>
+                      <Box sx={{ width: "100%", typography: "body1" }}>
+                        <TabContext value={cat}>
+                          <Box sx={{ borderBottom: 0, borderColor: "divider" }}>
+                            <TabList
+                              onChange={handleCat}
+                              aria-label="lab API tabs example"
+                            >
+                              <Tab
+                                className="cat-tab"
+                                label="All"
+                                value="1"
+                                style={{
+                                  outline: "none",
+                                }}
+                              />
+                              <Tab
+                                className="cat-tab"
+                                label="Addipoli Puttus"
+                                value="2"
+                                style={{ outline: "none " }}
+                              />
+                              <Tab
+                                className="cat-tab"
+                                label="Addipoli Wrappies"
+                                value="3"
+                                style={{ outline: "none " }}
+                              />
+                              <Tab
+                                className="cat-tab"
+                                label="Addipoli Dishes"
+                                value="4"
+                                style={{ outline: "none " }}
+                              />
+                              <Tab
+                                className="cat-tab"
+                                label="Others"
+                                value="5"
+                                style={{ outline: "none " }}
+                              />
+                            </TabList>
+                          </Box>
+                          <TabPanel value="1">
+                            {products
+                              .filter(
+                                (filteredproducts) =>
+                                  filteredproducts.category != "Combo"
+                              )
+                              .map((combo) => {
+                                return (
+                                  <div
+                                    className={`col-lg-3 col-md-6 col-sm-12 col-xs-12 fadeInDown ${combo.category}`}
+                                    data-wow-duration="1000ms"
+                                    data-wow-delay="300ms"
+                                  >
+                                    <ProductCard
+                                      product={combo}
+                                      handleCart={handleCart}
+                                      key={combo.id}
+                                    />
+                                  </div>
+                                );
+                              })}
+                          </TabPanel>
+                          <TabPanel value="2">
+                            {products
+                              .filter(
+                                (filteredproducts) =>
+                                  filteredproducts.category == "Addipoli Puttus"
+                              )
+                              .map((combo) => {
+                                return (
+                                  <div
+                                    className={`col-lg-3 col-md-6 col-sm-12 col-xs-12 fadeInDown ${combo.category}`}
+                                    data-wow-duration="1000ms"
+                                    data-wow-delay="300ms"
+                                  >
+                                    <ProductCard
+                                      product={combo}
+                                      handleCart={handleCart}
+                                      key={combo.id}
+                                    />
+                                  </div>
+                                );
+                              })}
+                          </TabPanel>
+                          <TabPanel value="3">
+                            {products
+                              .filter(
+                                (filteredproducts) =>
+                                  filteredproducts.category ==
+                                  "Addipoli Wrappies"
+                              )
+                              .map((combo) => {
+                                return (
+                                  <div
+                                    className={`col-lg-3 col-md-6 col-sm-12 col-xs-12 fadeInDown ${combo.category}`}
+                                    data-wow-duration="1000ms"
+                                    data-wow-delay="300ms"
+                                  >
+                                    <ProductCard
+                                      product={combo}
+                                      handleCart={handleCart}
+                                      key={combo.id}
+                                    />
+                                  </div>
+                                );
+                              })}
+                          </TabPanel>
+                          <TabPanel value="4">
+                            {products
+                              .filter(
+                                (filteredproducts) =>
+                                  filteredproducts.category == "Addipoli Dishes"
+                              )
+                              .map((combo) => {
+                                return (
+                                  <div
+                                    className={`col-lg-3 col-md-6 col-sm-12 col-xs-12 fadeInDown ${combo.category}`}
+                                    data-wow-duration="1000ms"
+                                    data-wow-delay="300ms"
+                                  >
+                                    <ProductCard
+                                      product={combo}
+                                      handleCart={handleCart}
+                                      key={combo.id}
+                                    />
+                                  </div>
+                                );
+                              })}
+                          </TabPanel>
+                          <TabPanel value="5">
+                            {products
+                              .filter(
+                                (filteredproducts) =>
+                                  filteredproducts.category == "Others"
+                              )
+                              .map((combo) => {
+                                return (
+                                  <div
+                                    className={`col-lg-3 col-md-6 col-sm-12 col-xs-12 fadeInDown ${combo.category}`}
+                                    data-wow-duration="1000ms"
+                                    data-wow-delay="300ms"
+                                  >
+                                    <ProductCard
+                                      product={combo}
+                                      handleCart={handleCart}
+                                      key={combo.id}
+                                    />
+                                  </div>
+                                );
+                              })}
+                          </TabPanel>
+                        </TabContext>
+                      </Box>
                     </div>
                   </div>
                 </div>
               </div>
+              {/* {products
+                .filter(
+                  (filteredproducts) => filteredproducts.category != "Combo"
+                )
+                .map((combo) => {
+                  return (
+                    <div
+                      className={`col-lg-3 col-md-6 col-sm-12 col-xs-12 fadeInDown ${combo.category}`}
+                      data-wow-duration="1000ms"
+                      data-wow-delay="300ms"
+                    >
+                      <ProductCard
+                        product={combo}
+                        handleCart={handleCart}
+                        key={combo.id}
+                      />
+                    </div>
+                  );
+                })} */}
               <div className="float-main">
                 <div className="icon-top-left">
                   <img src="assets/images/icon7.png" alt="" />

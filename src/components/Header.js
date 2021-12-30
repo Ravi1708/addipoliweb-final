@@ -468,14 +468,14 @@ const Header = ({ location, match }) => {
             fontSize: "17px",
           }}
           variant="filled"
-          severity="info"
+          severity="error"
         >
           No hubs are found near your area,
         </Alert>
       )}
       {/* <!-- Start Header --> */}
       <header>
-        <div className="header-part header-reduce sticky">
+        <div className="header-part header-reduce sticky" style={{}}>
           <div className="header-top">
             <div className="container">
               <div className="header-top-inner">
