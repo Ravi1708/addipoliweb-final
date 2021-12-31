@@ -33,6 +33,8 @@ const CheckoutPayment = ({ history }) => {
       )
       .then((res) => {
         setreceiptID(res.data.receiptId);
+        const receipt = res.data.receiptId;
+
         var options = {
           key: "rzp_live_k1Jb6HWsUrIGni",
           amount: parseFloat(cart.totalPrice) * 100,
@@ -67,6 +69,7 @@ const CheckoutPayment = ({ history }) => {
                     quantity: val.qty,
                   };
                 });
+
                 dispatch(
                   createOrder({
                     orderType: "Delivery",
@@ -82,7 +85,7 @@ const CheckoutPayment = ({ history }) => {
                     paymentResult: "Paid",
                     deliveryStatus: "Order Placed",
                     orderStatus: "Ongoing",
-                    receiptId: receiptID,
+                    receiptId: receipt,
                     hubId: cart.shippingAddress.hubId,
                   })
                 );
