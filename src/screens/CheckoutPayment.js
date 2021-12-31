@@ -12,10 +12,40 @@ const CheckoutPayment = ({ history }) => {
   const [paymentID, setpaymentID] = useState("");
   const [orderID, setorderID] = useState("");
   const [signature, setsignature] = useState("");
-  const [receiptID, setreceiptID] = useState("");
+  const [receiptID, setreceiptID] = useState(" ");
+  const [paymentsuccess, setpaymentsuccess] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const placeOrderHandler = () => {
+    const orderItems = cart.cartItems.map((val) => {
+      return {
+        productId: val.product,
+        quantity: val.qty,
+      };
+    });
+    dispatch(
+      createOrder({
+        orderType: "Delivery",
+        orderItems: orderItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: paymentMethod,
+        basePrice: parseFloat(cart.basePrice),
+        deliveryCharge: parseFloat(cart.deliveryCharge),
+        tax: parseFloat(cart.taxPrice),
+        couponDiscount: parseFloat(cart.couponDiscount),
+        totalPrice: parseFloat(cart.totalPrice),
+        payprice: cart.payprice,
+        paymentResult: "Unpaid",
+        deliveryStatus: "Order Placed",
+        orderStatus: "Ongoing",
+        receiptId: receiptID,
+        hubId: cart.shippingAddress.hubId,
+      })
+    );
+    localStorage.removeItem("cartItems");
+  };
 
   const handlePay = async () => {
     const config = {
@@ -32,10 +62,8 @@ const CheckoutPayment = ({ history }) => {
         config
       )
       .then((res) => {
-        setreceiptID(res.data.receiptId);
-        const receipt = res.data.receiptId;
-
-        console.log(typeof receipt);
+        let receipt = res.data.receiptId;
+        setreceiptID(String(res.data.receiptId));
 
         var options = {
           // key: "rzp_live_k1Jb6HWsUrIGni",
@@ -45,6 +73,7 @@ const CheckoutPayment = ({ history }) => {
           name: "Addipoli Puttus",
           image: "assets/img/Logo.png",
           order_id: res.data.razorpayOrderId,
+          receipt: res.data.receiptId,
           // callback_url: "https://eneqd3r9zrjok.x.pipedream.net/",
           handler: function (response) {
             console.log(response);
@@ -66,35 +95,35 @@ const CheckoutPayment = ({ history }) => {
                 config
               )
               .then(() => {
-                const orderItems = cart.cartItems.map((val) => {
-                  return {
-                    productId: val.product,
-                    quantity: val.qty,
-                  };
-                });
+                setpaymentsuccess(true);
+                placeOrderHandler();
+                // const orderItems = cart.cartItems.map((val) => {
+                //   return {
+                //     productId: val.product,
+                //     quantity: val.qty,
+                //   };
+                // });
 
-                console.log(receipt);
-
-                dispatch(
-                  createOrder({
-                    orderType: "Delivery",
-                    orderItems,
-                    shippingAddress: cart.shippingAddress,
-                    paymentMethod: paymentMethod,
-                    basePrice: parseFloat(cart.basePrice),
-                    deliveryCharge: parseFloat(cart.deliveryCharge),
-                    tax: parseFloat(cart.taxPrice),
-                    couponDiscount: parseFloat(cart.couponDiscount),
-                    totalPrice: parseFloat(cart.totalPrice),
-                    payprice: cart.payprice,
-                    paymentResult: "Paid",
-                    deliveryStatus: "Order Placed",
-                    orderStatus: "Ongoing",
-                    receiptId: receipt,
-                    hubId: cart.shippingAddress.hubId,
-                  })
-                );
-                localStorage.removeItem("cartItems");
+                // dispatch(
+                //   createOrder({
+                //     orderType: "Delivery",
+                //     orderItems,
+                //     shippingAddress: cart.shippingAddress,
+                //     paymentMethod: paymentMethod,
+                //     basePrice: parseFloat(cart.basePrice),
+                //     deliveryCharge: parseFloat(cart.deliveryCharge),
+                //     tax: parseFloat(cart.taxPrice),
+                //     couponDiscount: parseFloat(cart.couponDiscount),
+                //     totalPrice: parseFloat(cart.totalPrice),
+                //     payprice: cart.payprice,
+                //     paymentResult: "Paid",
+                //     deliveryStatus: "Order Placed",
+                //     orderStatus: "Ongoing",
+                //     receiptId: receiptId,
+                //     hubId: cart.shippingAddress.hubId,
+                //   })
+                // );
+                // localStorage.removeItem("cartItems");
               })
               .catch((err) => console.log(err));
           },
@@ -134,7 +163,6 @@ const CheckoutPayment = ({ history }) => {
   const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(setPaymentMethod);
     dispatch(savePaymentMethod(paymentMethod));
     history.push("/placeorder");
   };
@@ -148,34 +176,6 @@ const CheckoutPayment = ({ history }) => {
       history.push(`/ordercompleted/${order.orderId}`);
     }
   }, [history, success]);
-  const placeOrderHandler = () => {
-    const orderItems = cart.cartItems.map((val) => {
-      return {
-        productId: val.product,
-        quantity: val.qty,
-      };
-    });
-    dispatch(
-      createOrder({
-        orderType: "Delivery",
-        orderItems: orderItems,
-        shippingAddress: cart.shippingAddress,
-        paymentMethod: paymentMethod,
-        basePrice: parseFloat(cart.basePrice),
-        deliveryCharge: parseFloat(cart.deliveryCharge),
-        tax: parseFloat(cart.taxPrice),
-        couponDiscount: parseFloat(cart.couponDiscount),
-        totalPrice: parseFloat(cart.totalPrice),
-        payprice: cart.payprice,
-        paymentResult: "Unpaid",
-        deliveryStatus: "Order Placed",
-        orderStatus: "Ongoing",
-        receiptId: "",
-        hubId: cart.shippingAddress.hubId,
-      })
-    );
-    localStorage.removeItem("cartItems");
-  };
 
   return (
     <div>
