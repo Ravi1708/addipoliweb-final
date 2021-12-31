@@ -24,7 +24,8 @@ export const createOrder = (order) => async (dispatch, getState) => {
     dispatch({
       type: ORDER_CREATE_REQUEST,
     });
-
+    console.log(order);
+    console.log(typeof order.receiptId);
     const {
       userLogin: { userInfo },
     } = getState();

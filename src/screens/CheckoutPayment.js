@@ -73,6 +73,8 @@ const CheckoutPayment = ({ history }) => {
                   };
                 });
 
+                console.log(receipt);
+
                 dispatch(
                   createOrder({
                     orderType: "Delivery",
