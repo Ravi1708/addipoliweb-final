@@ -361,7 +361,7 @@ const Header = ({ location, match }) => {
       setShowmap(false);
     } else {
       if (history.location.pathname == "/") {
-        setShowmap(true);
+        // setShowmap(true);
       }
     }
     if (opensignin == true) {
@@ -475,7 +475,7 @@ const Header = ({ location, match }) => {
       )}
       {/* <!-- Start Header --> */}
       <header>
-        <div className="header-part header-reduce sticky" style={{}}>
+        <div className="header-part header-reduce sticky">
           <div className="header-top">
             <div className="container">
               <div className="header-top-inner">
@@ -732,7 +732,7 @@ const Header = ({ location, match }) => {
                   </Modal> */}
 
                   <div
-                    className="shop-cart header-collect"
+                    className="shop-cart header-collect shop-card-header"
                     onClick={(e) => {
                       e.preventDefault();
                       setopencart(true);

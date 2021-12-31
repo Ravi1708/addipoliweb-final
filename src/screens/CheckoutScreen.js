@@ -189,7 +189,10 @@ const CheckoutScreen = ({ match, history }) => {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-lg-8" style={{ paddingTop: "15px" }}>
+                  <div
+                    className="col-lg-8"
+                    style={{ paddingTop: "15px", marginTop: "10px" }}
+                  >
                     <div
                       className="shop-cart-list wow fadeInDown"
                       data-wow-duration="1000ms"
@@ -233,11 +236,15 @@ const CheckoutScreen = ({ match, history }) => {
                       </div> */}
                     </div>
                   </div>
-                  <div className="col-lg-4" style={{ paddingTop: "15px" }}>
+                  <div
+                    className="col-lg-4"
+                    style={{ paddingTop: "15px", marginTop: "10px" }}
+                  >
                     <div
                       className="cart-total wow fadeInDown"
                       data-wow-duration="1000ms"
                       data-wow-delay="300ms"
+                      style={{ overflowX: "scroll" }}
                     >
                       <div className="cart-total-title">
                         <h5>CART TOTALS</h5>
@@ -265,7 +272,10 @@ const CheckoutScreen = ({ match, history }) => {
                       </div>
                       <div className="proceed-check">
                         <LinkContainer to="/payment">
-                          <div className="btn-primary-gold btn-medium">
+                          <div
+                            className="btn-primary-gold btn-medium"
+                            style={{ color: "white !important" }}
+                          >
                             Confirm Order
                           </div>
                         </LinkContainer>

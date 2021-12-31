@@ -2932,6 +2932,19 @@ textarea {
   border-radius: 30px;
 }
 
+.portfolioFilter .cat-tab {
+  display: inline-block;
+  width: auto;
+  text-align: center;
+  padding: 13px 36px;
+  color: #20202f;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  border-radius: 30px;
+}
+
 .portfolioFilter-inner {
   display: inline-block;
   width: auto;
@@ -2946,6 +2959,16 @@ textarea {
   -ms-box-shadow: 0 0 20px 0 #dddcd9;
   -o-box-shadow: 0 0 20px 0 #dddcd9;
   box-shadow: 0 0 20px 0 #dddcd9;
+}
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  background: #20202f !important;
+  color: #ffffff !important;
+}
+
+.portfolioFilter a.current {
+  background: #20202f;
+  color: #ffffff;
 }
 
 .portfolioFilter a.current {

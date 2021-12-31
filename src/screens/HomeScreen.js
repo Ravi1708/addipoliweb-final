@@ -452,24 +452,7 @@ const HomeScreen = ({ match, history }) => {
                   </h6>
                 </div>
                 <div className="menu-wrapper">
-                  {/* <div className="portfolioFilter">
-                    <div className="portfolioFilter-inner">
-                      <LinkContainer to={`${match}/`} activeclassName="current">
-                        <a>All</a>
-                      </LinkContainer>
-                      <NavLink to="/" activeClassName="current">
-                        <a>Addipoli Puttu’s</a>
-                      </NavLink>
-                      <LinkContainer to="/wrappies" activeClassName="current">
-                        <a href="/wrappies">Addipoli Wrappies</a>
-                      </LinkContainer>
-                      <LinkContainer to="/dishes" activeClassName="current">
-                        <a>Addipoli Dishes</a>
-                      </LinkContainer>
-                      <LinkContainer to="/others" activeClassName="current">
-                        <a>Others</a>
-                      </LinkContainer>
-                    </div>
+                  <div className="portfolioFilter">
                     <div className="portfolioFilter-inner">
                       <a
                         href="javascript:;"
@@ -491,167 +474,166 @@ const HomeScreen = ({ match, history }) => {
                         Others
                       </a>
                     </div>
-                  </div> */}
-                  <div className="row">
-                    <div
-                      className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                      style={{ position: "relative" }}
-                    >
-                      <Box sx={{ width: "100%", typography: "body1" }}>
-                        <TabContext value={cat}>
-                          <Box sx={{ borderBottom: 0, borderColor: "divider" }}>
-                            <TabList
-                              onChange={handleCat}
-                              aria-label="lab API tabs example"
-                            >
-                              <Tab
-                                className="cat-tab"
-                                label="All"
-                                value="1"
-                                style={{
-                                  outline: "none",
-                                }}
-                              />
-                              <Tab
-                                className="cat-tab"
-                                label="Addipoli Puttus"
-                                value="2"
-                                style={{ outline: "none " }}
-                              />
-                              <Tab
-                                className="cat-tab"
-                                label="Addipoli Wrappies"
-                                value="3"
-                                style={{ outline: "none " }}
-                              />
-                              <Tab
-                                className="cat-tab"
-                                label="Addipoli Dishes"
-                                value="4"
-                                style={{ outline: "none " }}
-                              />
-                              <Tab
-                                className="cat-tab"
-                                label="Others"
-                                value="5"
-                                style={{ outline: "none " }}
-                              />
-                            </TabList>
-                          </Box>
-                          <TabPanel value="1">
-                            {products
-                              .filter(
-                                (filteredproducts) =>
-                                  filteredproducts.category != "Combo"
-                              )
-                              .map((combo) => {
-                                return (
-                                  <div
-                                    className={`col-lg-3 col-md-6 col-sm-12 col-xs-12 fadeInDown ${combo.category}`}
-                                    data-wow-duration="1000ms"
-                                    data-wow-delay="300ms"
-                                  >
-                                    <ProductCard
-                                      product={combo}
-                                      handleCart={handleCart}
-                                      key={combo.id}
-                                    />
-                                  </div>
-                                );
-                              })}
-                          </TabPanel>
-                          <TabPanel value="2">
-                            {products
-                              .filter(
-                                (filteredproducts) =>
-                                  filteredproducts.category == "Addipoli Puttus"
-                              )
-                              .map((combo) => {
-                                return (
-                                  <div
-                                    className={`col-lg-3 col-md-6 col-sm-12 col-xs-12 fadeInDown ${combo.category}`}
-                                    data-wow-duration="1000ms"
-                                    data-wow-delay="300ms"
-                                  >
-                                    <ProductCard
-                                      product={combo}
-                                      handleCart={handleCart}
-                                      key={combo.id}
-                                    />
-                                  </div>
-                                );
-                              })}
-                          </TabPanel>
-                          <TabPanel value="3">
-                            {products
-                              .filter(
-                                (filteredproducts) =>
-                                  filteredproducts.category ==
-                                  "Addipoli Wrappies"
-                              )
-                              .map((combo) => {
-                                return (
-                                  <div
-                                    className={`col-lg-3 col-md-6 col-sm-12 col-xs-12 fadeInDown ${combo.category}`}
-                                    data-wow-duration="1000ms"
-                                    data-wow-delay="300ms"
-                                  >
-                                    <ProductCard
-                                      product={combo}
-                                      handleCart={handleCart}
-                                      key={combo.id}
-                                    />
-                                  </div>
-                                );
-                              })}
-                          </TabPanel>
-                          <TabPanel value="4">
-                            {products
-                              .filter(
-                                (filteredproducts) =>
-                                  filteredproducts.category == "Addipoli Dishes"
-                              )
-                              .map((combo) => {
-                                return (
-                                  <div
-                                    className={`col-lg-3 col-md-6 col-sm-12 col-xs-12 fadeInDown ${combo.category}`}
-                                    data-wow-duration="1000ms"
-                                    data-wow-delay="300ms"
-                                  >
-                                    <ProductCard
-                                      product={combo}
-                                      handleCart={handleCart}
-                                      key={combo.id}
-                                    />
-                                  </div>
-                                );
-                              })}
-                          </TabPanel>
-                          <TabPanel value="5">
-                            {products
-                              .filter(
-                                (filteredproducts) =>
-                                  filteredproducts.category == "Others"
-                              )
-                              .map((combo) => {
-                                return (
-                                  <div
-                                    className={`col-lg-3 col-md-6 col-sm-12 col-xs-12 fadeInDown ${combo.category}`}
-                                    data-wow-duration="1000ms"
-                                    data-wow-delay="300ms"
-                                  >
-                                    <ProductCard
-                                      product={combo}
-                                      handleCart={handleCart}
-                                      key={combo.id}
-                                    />
-                                  </div>
-                                );
-                              })}
-                          </TabPanel>
-                        </TabContext>
-                      </Box>
-                    </div>
+                  </div>
+                  {/* <div className="row">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"> */}
+                  <div className="portfolioFilter">
+                    <TabContext value={cat}>
+                      <div className="portfolioFilter-inner">
+                        <TabList
+                          onChange={handleCat}
+                          aria-label="lab API tabs example"
+                          activeclassName="current"
+                        >
+                          <Tab
+                            className="cat-tab"
+                            label="All"
+                            value="1"
+                            style={{
+                              outline: "none",
+                            }}
+                          />
+                          <Tab
+                            className="cat-tab"
+                            label="Addipoli Puttu’s"
+                            value="2"
+                            style={{ outline: "none " }}
+                          />
+                          <Tab
+                            className="cat-tab"
+                            label="Addipoli Wrappies"
+                            value="3"
+                            style={{ outline: "none " }}
+                          />
+                          <Tab
+                            className="cat-tab"
+                            label="Addipoli Dishes"
+                            value="4"
+                            style={{ outline: "none " }}
+                          />
+                          <Tab
+                            className="cat-tab"
+                            label="Others"
+                            value="5"
+                            style={{ outline: "none ", border: "none" }}
+                          />
+                        </TabList>
+                      </div>
+
+                      <TabPanel value="1" className="portfolioContainer row">
+                        {products
+                          .filter(
+                            (filteredproducts) =>
+                              filteredproducts.category != "Combo"
+                          )
+                          .map((combo) => {
+                            return (
+                              <div
+                                className={`col-lg-3 col-md-6 col-sm-12 col-xs-12 fadeInDown ${combo.category}`}
+                                data-wow-duration="1000ms"
+                                data-wow-delay="300ms"
+                              >
+                                <ProductCard
+                                  product={combo}
+                                  handleCart={handleCart}
+                                  key={combo.id}
+                                />
+                              </div>
+                            );
+                          })}
+                      </TabPanel>
+                      <TabPanel value="2" className="portfolioContainer row">
+                        {products
+                          .filter(
+                            (filteredproducts) =>
+                              filteredproducts.category == "Addipoli Puttus"
+                          )
+                          .map((combo) => {
+                            return (
+                              <div
+                                className={`col-lg-3 col-md-6 col-sm-12 col-xs-12 fadeInDown ${combo.category}`}
+                                data-wow-duration="1000ms"
+                                data-wow-delay="300ms"
+                              >
+                                <ProductCard
+                                  product={combo}
+                                  handleCart={handleCart}
+                                  key={combo.id}
+                                />
+                              </div>
+                            );
+                          })}
+                      </TabPanel>
+                      <TabPanel value="3" className="portfolioContainer row">
+                        {products
+                          .filter(
+                            (filteredproducts) =>
+                              filteredproducts.category == "Addipoli Wrappies"
+                          )
+                          .map((combo) => {
+                            return (
+                              <div
+                                className={`col-lg-3 col-md-6 col-sm-12 col-xs-12 fadeInDown ${combo.category}`}
+                                data-wow-duration="1000ms"
+                                data-wow-delay="300ms"
+                              >
+                                <ProductCard
+                                  product={combo}
+                                  handleCart={handleCart}
+                                  key={combo.id}
+                                />
+                              </div>
+                            );
+                          })}
+                      </TabPanel>
+                      <TabPanel value="4" className="portfolioContainer row">
+                        {products
+                          .filter(
+                            (filteredproducts) =>
+                              filteredproducts.category == "Addipoli Dishes"
+                          )
+                          .map((combo) => {
+                            return (
+                              <div
+                                className={`col-lg-3 col-md-6 col-sm-12 col-xs-12 fadeInDown ${combo.category}`}
+                                data-wow-duration="1000ms"
+                                data-wow-delay="300ms"
+                              >
+                                <ProductCard
+                                  product={combo}
+                                  handleCart={handleCart}
+                                  key={combo.id}
+                                />
+                              </div>
+                            );
+                          })}
+                      </TabPanel>
+                      <TabPanel value="5" className="portfolioContainer row">
+                        {products
+                          .filter(
+                            (filteredproducts) =>
+                              filteredproducts.category == "Others"
+                          )
+                          .map((combo) => {
+                            return (
+                              <div
+                                className={`col-lg-3 col-md-6 col-sm-12 col-xs-12 fadeInDown ${combo.category}`}
+                                data-wow-duration="1000ms"
+                                data-wow-delay="300ms"
+                              >
+                                <ProductCard
+                                  product={combo}
+                                  handleCart={handleCart}
+                                  key={combo.id}
+                                />
+                              </div>
+                            );
+                          })}
+                      </TabPanel>
+                    </TabContext>
+
+                    {/* </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
