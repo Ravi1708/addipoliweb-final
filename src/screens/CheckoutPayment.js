@@ -47,6 +47,35 @@ const CheckoutPayment = ({ history }) => {
     localStorage.removeItem("cartItems");
   };
 
+  const placeOrderOnlineHandler = () => {
+    const orderItems = cart.cartItems.map((val) => {
+      return {
+        productId: val.product,
+        quantity: val.qty,
+      };
+    });
+    dispatch(
+      createOrder({
+        orderType: "Delivery",
+        orderItems: orderItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: "Online payment",
+        basePrice: parseFloat(cart.basePrice),
+        deliveryCharge: parseFloat(cart.deliveryCharge),
+        tax: parseFloat(cart.taxPrice),
+        couponDiscount: parseFloat(cart.couponDiscount),
+        totalPrice: parseFloat(cart.totalPrice),
+        payprice: cart.payprice,
+        paymentResult: "Paid",
+        deliveryStatus: "Order Placed",
+        orderStatus: "Ongoing",
+        receiptId: receiptID,
+        hubId: cart.shippingAddress.hubId,
+      })
+    );
+    localStorage.removeItem("cartItems");
+  };
+
   const handlePay = async () => {
     const config = {
       headers: {
@@ -76,14 +105,6 @@ const CheckoutPayment = ({ history }) => {
           receipt: res.data.receiptId,
           // callback_url: "https://eneqd3r9zrjok.x.pipedream.net/",
           handler: function (response) {
-            console.log(response);
-            // setpaymentID(response.razorpay_payment_id);
-            // setorderID(response.razorpay_order_id);
-            // setsignature(response.razorpay_signature);
-            console.log(paymentID);
-            console.log(orderID);
-            console.log(signature);
-
             axios
               .post(
                 "https:/api.addipoli-puttus.com/user/verify-payment",
@@ -96,7 +117,7 @@ const CheckoutPayment = ({ history }) => {
               )
               .then(() => {
                 setpaymentsuccess(true);
-                placeOrderHandler();
+                placeOrderOnlineHandler();
                 // const orderItems = cart.cartItems.map((val) => {
                 //   return {
                 //     productId: val.product,
