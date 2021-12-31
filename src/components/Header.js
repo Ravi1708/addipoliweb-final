@@ -34,6 +34,22 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import Alert from "@mui/material/Alert";
 
 const Header = ({ location, match }) => {
+  // var window_height = $(window).height(),
+  //   document_height = $(document).height(),
+  //   topPos = $(document).scrollTop(),
+  //   header_height = $("header-part").height();
+
+  // if (topPos > header_height) {
+  //   if (
+  //     window_height < document_height &&
+  //     $(".header-part").hasClass("sticky")
+  //   ) {
+  //     $(".header-part").addClass("sticky-fixed");
+  //   }
+  // } else {
+  //   $(".header-part").removeClass("sticky-fixed");
+  // }
+
   let history = useHistory();
 
   const [showmap, setShowmap] = useState(false);
@@ -453,26 +469,11 @@ const Header = ({ location, match }) => {
     otp,
     verifiedaddress,
     verifyaddError,
+    signupError,
   ]);
 
   return (
     <div>
-      {verifyaddError ==
-        "No hubs are found near your area, Please try with another address or Order In" && (
-        <Alert
-          style={{
-            position: "fixed",
-            bottom: "20px",
-            right: "0px",
-            width: "300px",
-            fontSize: "17px",
-          }}
-          variant="filled"
-          severity="error"
-        >
-          No hubs are found near your area,
-        </Alert>
-      )}
       {/* <!-- Start Header --> */}
       <header>
         <div className="header-part header-reduce sticky">
@@ -1220,6 +1221,22 @@ const Header = ({ location, match }) => {
           </Button>
         </Modal.Footer>
       </Modal>
+      {/* {verifyaddError ==
+        "No hubs are found near your area, Please try with another address or Order In" && (
+        <Alert
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            right: "0px",
+            width: "300px",
+            fontSize: "17px",
+          }}
+          variant="filled"
+          severity="error"
+        >
+         No Store available near by Can't be delivered at your location.
+        </Alert>
+      )} */}
     </div>
   );
 };

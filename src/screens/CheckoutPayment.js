@@ -35,8 +35,11 @@ const CheckoutPayment = ({ history }) => {
         setreceiptID(res.data.receiptId);
         const receipt = res.data.receiptId;
 
+        console.log(typeof receipt);
+
         var options = {
-          key: "rzp_live_k1Jb6HWsUrIGni",
+          // key: "rzp_live_k1Jb6HWsUrIGni",
+          key: "rzp_test_XFs5xG4NoberIv",
           amount: parseFloat(cart.totalPrice) * 100,
           currency: "INR",
           name: "Addipoli Puttus",
@@ -93,11 +96,6 @@ const CheckoutPayment = ({ history }) => {
               })
               .catch((err) => console.log(err));
           },
-          // prefill: {
-          //   name: "Name",
-          //   email: "Name@example.com",
-          //   contact: "9999999999",
-          // },
           theme: {
             color: "#3399cc",
           },

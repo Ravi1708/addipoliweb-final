@@ -2990,9 +2990,23 @@ textarea {
   border-bottom: none !important;
 }
 
+.portfolioFilter .MuiTabs-indicator {
+  display: none !important;
+}
+
 .portfolioFilter .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
   background: #20202f !important;
   color: #ffffff !important;
+}
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  background-color: #f4f2ed;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.MuiTabs-indicator {
+  background-color: #04e04c !important;
 }
 
 .portfolioFilter a.current {

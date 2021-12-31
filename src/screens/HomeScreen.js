@@ -187,7 +187,7 @@ const HomeScreen = ({ match, history }) => {
       sethashValue(otp.hashValue);
     }
     dispatch(listProducts());
-  }, [dispatch, userInfo]);
+  }, [dispatch, userInfo, otp, signinError, signupError]);
 
   return (
     <div>
@@ -234,20 +234,6 @@ const HomeScreen = ({ match, history }) => {
                 <img src="assets/img/icon5.png" alt="" />
               </div>
               <div className="container">
-                <Alert
-                  style={{
-                    position: "fixed",
-                    bottom: "10px",
-                    right: "10px",
-                    width: "350px",
-                    fontSize: "17px",
-                    display: showToast ? "unset" : "none",
-                  }}
-                  variant="filled"
-                  severity="info"
-                >
-                  No hubs are found near your area,
-                </Alert>
                 <h3 style={{ color: "#04e04c" }}>Special Combo Offer</h3>
                 <div className="row" data-defaultfilter=".breakfast">
                   <div className="col-lg-8 col-md-12 col-sm-12 col-xs-12">
@@ -452,7 +438,7 @@ const HomeScreen = ({ match, history }) => {
                   </h6>
                 </div>
                 <div className="menu-wrapper">
-                  <div className="portfolioFilter">
+                  {/* <div className="portfolioFilter">
                     <div className="portfolioFilter-inner">
                       <a
                         href="javascript:;"
@@ -474,9 +460,7 @@ const HomeScreen = ({ match, history }) => {
                         Others
                       </a>
                     </div>
-                  </div>
-                  {/* <div className="row">
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12"> */}
+                  </div> */}
                   <div className="portfolioFilter">
                     <TabContext value={cat}>
                       <div className="portfolioFilter-inner">
@@ -631,9 +615,6 @@ const HomeScreen = ({ match, history }) => {
                           })}
                       </TabPanel>
                     </TabContext>
-
-                    {/* </div>
-                    </div> */}
                   </div>
                 </div>
               </div>
@@ -951,16 +932,18 @@ const HomeScreen = ({ match, history }) => {
               </div>
               {otpError && <Message>{otpError}</Message>}
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <input
-                  style={{
-                    visibility: hashValue ? "unset" : "hidden",
-                    width: "65%",
-                  }}
-                  type="text"
-                  vale={OTP}
-                  onChange={(e) => setotpvalue(Number(e.target.value))}
-                  placeholder="Enter OTP"
-                />
+                {otp && (
+                  <input
+                    style={{
+                      visibility: hashValue ? "unset" : "hidden",
+                      width: "65%",
+                    }}
+                    type="text"
+                    vale={OTP}
+                    onChange={(e) => setotpvalue(Number(e.target.value))}
+                    placeholder="Enter OTP"
+                  />
+                )}
 
                 <button
                   onClick={(e) => {
@@ -1045,6 +1028,20 @@ const HomeScreen = ({ match, history }) => {
           </div>
         </div>
       </div>
+      <Alert
+        style={{
+          position: "fixed",
+          bottom: "10px",
+          right: "10px",
+          width: "350px",
+          fontSize: "17px",
+          display: showToast ? "unset" : "none",
+        }}
+        variant="filled"
+        severity="error"
+      >
+        No Store available near by. Can't be delivered at your location.
+      </Alert>
     </div>
   );
 };
