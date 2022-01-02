@@ -29,7 +29,24 @@ const CheckoutScreen = ({ match, history }) => {
     cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
   );
 
-  cart.deliveryCharge = addDecimals(20);
+  let distance = Number(shippingAddress.distance.slice(0, 3));
+
+  if (distance <= 2) {
+    console.log("distance less than 2");
+    if (cart.basePrice >= 500) {
+      cart.deliveryCharge = 0;
+    } else {
+      cart.deliveryCharge = 20;
+    }
+  }
+  if (distance > 2) {
+    console.log("distance greater than 2");
+    if (cart.basePrice >= 500) {
+      cart.deliveryCharge = 0;
+    } else {
+      cart.deliveryCharge = Number(Math.ceil(distance) * 10);
+    }
+  }
 
   cart.taxPrice = addDecimals(Number((0.05 * cart.basePrice).toFixed(2)));
 
@@ -51,7 +68,9 @@ const CheckoutScreen = ({ match, history }) => {
   };
 
   //get product list when dispatch changes
-  useEffect(() => {}, [dispatch, keyword, pageNumber]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [dispatch, keyword, pageNumber]);
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
@@ -98,7 +117,7 @@ const CheckoutScreen = ({ match, history }) => {
                   </ul>
                 </div>
                 <div className="row">
-                  <div className="col-lg-12">
+                  <div className="col-xs-12">
                     <div
                       className="shop-cart-list wow fadeInDown"
                       data-wow-duration="1000ms"
@@ -191,12 +210,16 @@ const CheckoutScreen = ({ match, history }) => {
                 <div className="row">
                   <div
                     className="col-lg-8"
-                    style={{ paddingTop: "15px", marginTop: "10px" }}
+                    style={{
+                      paddingTop: "15px",
+                      marginTop: "10px",
+                    }}
                   >
                     <div
                       className="shop-cart-list wow fadeInDown"
                       data-wow-duration="1000ms"
                       data-wow-delay="300ms"
+                      style={{ overflowX: "hidden" }}
                     >
                       {/* <div class="shop-checkout-box"> */}
                       <div className="cart-total-title">
@@ -208,10 +231,10 @@ const CheckoutScreen = ({ match, history }) => {
                         <small>
                           {shippingAddress.address}
                           <br />
-                          {shippingAddress.area}
+                          {/* {shippingAddress.area}
                           <br />
                           {shippingAddress.pincode}
-                          <br />
+                          <br /> */}
                           {shippingAddress.landmark}
                           <br />
                           Mobile Number - {shippingAddress.phoneNumber}
@@ -244,7 +267,6 @@ const CheckoutScreen = ({ match, history }) => {
                       className="cart-total wow fadeInDown"
                       data-wow-duration="1000ms"
                       data-wow-delay="300ms"
-                      style={{ overflowX: "scroll" }}
                     >
                       <div className="cart-total-title">
                         <h5>CART TOTALS</h5>
@@ -273,8 +295,8 @@ const CheckoutScreen = ({ match, history }) => {
                       <div className="proceed-check">
                         <LinkContainer to="/payment">
                           <div
+                            style={{ color: "#ffffff" }}
                             className="btn-primary-gold btn-medium"
-                            style={{ color: "white !important" }}
                           >
                             Confirm Order
                           </div>

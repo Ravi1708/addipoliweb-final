@@ -962,6 +962,10 @@
     padding-left: 15px;
     padding-right: 15px;
   }
+  table.shop-cart-table thead th {
+    font-size: 12px;
+  }
+  /*
   table.shop-cart-table th,
   table.shop-cart-table td {
     display: block;
@@ -1006,11 +1010,11 @@
   .cupon-part {
     margin: 15px 0 0;
     width: 100%;
-  }
-  .shop-cart-list {
+  } */
+  /* .shop-cart-list {
     padding-left: 15px;
     padding-right: 15px;
-  }
+  } */
   .register-wrap {
     margin-top: 50px;
   }

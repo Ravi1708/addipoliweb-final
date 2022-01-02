@@ -377,7 +377,7 @@ const Header = ({ location, match }) => {
       setShowmap(false);
     } else {
       if (history.location.pathname == "/") {
-        // setShowmap(true);
+        setShowmap(true);
       }
     }
     if (opensignin == true) {
@@ -947,7 +947,20 @@ const Header = ({ location, match }) => {
                   name="phone"
                   placeholder="Phone Number"
                   value={phoneNumber}
-                  onChange={(e) => setphoneNumber(e.target.value)}
+                  onChange={(e) => {
+                    var value = e.target.value;
+                    var mobile = "";
+                    if (value.slice(0, 1) == "+" || value.slice(0, 1) == "0") {
+                      mobile = value.replace(/\D/g, "").slice(-10);
+                      setphoneNumber(mobile);
+                      console.log(mobile);
+                    } else {
+                      mobile = value.replace(/[^a-zA-Z0-9]/g, "");
+                      setphoneNumber(mobile);
+                      console.log(mobile);
+                    }
+                  }}
+                  // onChange={(e) => setphoneNumber(e.target.value)}
                   style={{ width: "85%" }}
                 />
               </div>
@@ -1061,7 +1074,20 @@ const Header = ({ location, match }) => {
                   name="phone"
                   placeholder="Phone Number"
                   value={phoneNumber}
-                  onChange={(e) => setphoneNumber(e.target.value)}
+                  // onChange={(e) => setphoneNumber(e.target.value)}
+                  onChange={(e) => {
+                    var value = e.target.value;
+                    var mobile = "";
+                    if (value.slice(0, 1) == "+" || value.slice(0, 1) == "0") {
+                      mobile = value.replace(/\D/g, "").slice(-10);
+                      setphoneNumber(mobile);
+                      console.log(mobile);
+                    } else {
+                      mobile = value.replace(/[^a-zA-Z0-9]/g, "");
+                      setphoneNumber(mobile);
+                      console.log(mobile);
+                    }
+                  }}
                   style={{ width: "85%" }}
                 />
               </div>

@@ -2946,18 +2946,18 @@ textarea {
 .portfolioFilter .cat-tab {
   font-family: "Graviola-Regular" !important;
   text-transform: none !important;
-  display: inline-block;
-  width: auto;
-  text-align: center;
-  padding: 13px 36px;
+  display: inline-block !important;
+  width: auto !important;
+  text-align: center !important;
+  padding: 13px 36px !important;
   color: #20202f !important;
-  font-size: 16px;
-  border-bottom: none;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  -ms-border-radius: 30px;
-  -o-border-radius: 30px;
-  border-radius: 30px;
+  font-size: 16px !important;
+  border-bottom: none !important;
+  -webkit-border-radius: 30px !important;
+  -moz-border-radius: 30px !important;
+  -ms-border-radius: 30px !important;
+  -o-border-radius: 30px !important;
+  border-radius: 30px !important;
 }
 
 .portfolioFilter-inner {
@@ -2977,16 +2977,16 @@ textarea {
 }
 
 .portfolioFilter .css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
-  display: inline-block;
-  width: auto;
-  text-align: center;
-  padding: 13px 36px;
-  color: #20202f;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  -ms-border-radius: 30px;
-  -o-border-radius: 30px;
-  border-radius: 30px;
+  display: inline-block !important;
+  width: auto !important;
+  text-align: center !important;
+  padding: 13px 36px !important;
+  color: #20202f !important;
+  -webkit-border-radius: 30px !important;
+  -moz-border-radius: 30px !important;
+  -ms-border-radius: 30px !important;
+  -o-border-radius: 30px !important;
+  border-radius: 30px !important;
   border-bottom: none !important;
 }
 
@@ -3000,9 +3000,9 @@ textarea {
 }
 
 .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
-  background-color: #f4f2ed;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  background-color: #f4f2ed !important;
+  border-top-left-radius: 20px !important;
+  border-top-right-radius: 20px !important;
 }
 
 .MuiTabs-indicator {
@@ -6630,6 +6630,7 @@ ul.checkout-bar li:nth-child(6):before {
 
 .shop-cart-list {
   display: inline-block;
+  overflow-x: scroll;
   width: 100%;
   padding: 30px 34px;
   background-color: #ffffff;
@@ -6755,6 +6756,7 @@ table.shop-cart-table .shop-cart-close {
 }
 
 .cart-total {
+  overflow-y: hidden;
   float: right;
   width: 100%;
   padding: 30px 50px;
@@ -6817,7 +6819,8 @@ table.shop-cart-table .shop-cart-close {
 
 .proceed-check .btn-medium {
   width: 100%;
-  color: #04e04c;
+  /* color: #04e04c; */
+  color: #ffffff;
   border-color: #04e04c;
 }
 .proceed-check a {

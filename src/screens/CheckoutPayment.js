@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { savePaymentMethod } from "../actions/cartActions";
 import { createOrder } from "../actions/orderActions";
+import { ORDER_CREATE_RESET } from "../constants/orderConstants";
 
 const CheckoutPayment = ({ history }) => {
   const cart = useSelector((state) => state.cart);
@@ -47,34 +48,34 @@ const CheckoutPayment = ({ history }) => {
     localStorage.removeItem("cartItems");
   };
 
-  const placeOrderOnlineHandler = () => {
-    const orderItems = cart.cartItems.map((val) => {
-      return {
-        productId: val.product,
-        quantity: val.qty,
-      };
-    });
-    dispatch(
-      createOrder({
-        orderType: "Delivery",
-        orderItems: orderItems,
-        shippingAddress: cart.shippingAddress,
-        paymentMethod: "Online payment",
-        basePrice: parseFloat(cart.basePrice),
-        deliveryCharge: parseFloat(cart.deliveryCharge),
-        tax: parseFloat(cart.taxPrice),
-        couponDiscount: parseFloat(cart.couponDiscount),
-        totalPrice: parseFloat(cart.totalPrice),
-        payprice: cart.payprice,
-        paymentResult: "Paid",
-        deliveryStatus: "Order Placed",
-        orderStatus: "Ongoing",
-        receiptId: receiptID,
-        hubId: cart.shippingAddress.hubId,
-      })
-    );
-    localStorage.removeItem("cartItems");
-  };
+  // const placeOrderOnlineHandler = () => {
+  //   const orderItems = cart.cartItems.map((val) => {
+  //     return {
+  //       productId: val.product,
+  //       quantity: val.qty,
+  //     };
+  //   });
+  //   dispatch(
+  //     createOrder({
+  //       orderType: "Delivery",
+  //       orderItems: orderItems,
+  //       shippingAddress: cart.shippingAddress,
+  //       paymentMethod: "Online payment",
+  //       basePrice: parseFloat(cart.basePrice),
+  //       deliveryCharge: parseFloat(cart.deliveryCharge),
+  //       tax: parseFloat(cart.taxPrice),
+  //       couponDiscount: parseFloat(cart.couponDiscount),
+  //       totalPrice: parseFloat(cart.totalPrice),
+  //       payprice: cart.payprice,
+  //       paymentResult: "Paid",
+  //       deliveryStatus: "Order Placed",
+  //       orderStatus: "Ongoing",
+  //       receiptId: receiptID,
+  //       hubId: cart.shippingAddress.hubId,
+  //     })
+  //   );
+  //   localStorage.removeItem("cartItems");
+  // };
 
   const handlePay = async () => {
     const config = {
@@ -117,34 +118,34 @@ const CheckoutPayment = ({ history }) => {
               )
               .then(() => {
                 setpaymentsuccess(true);
-                placeOrderOnlineHandler();
-                // const orderItems = cart.cartItems.map((val) => {
-                //   return {
-                //     productId: val.product,
-                //     quantity: val.qty,
-                //   };
-                // });
+                // placeOrderOnlineHandler();
+                const orderItems = cart.cartItems.map((val) => {
+                  return {
+                    productId: val.product,
+                    quantity: val.qty,
+                  };
+                });
 
-                // dispatch(
-                //   createOrder({
-                //     orderType: "Delivery",
-                //     orderItems,
-                //     shippingAddress: cart.shippingAddress,
-                //     paymentMethod: paymentMethod,
-                //     basePrice: parseFloat(cart.basePrice),
-                //     deliveryCharge: parseFloat(cart.deliveryCharge),
-                //     tax: parseFloat(cart.taxPrice),
-                //     couponDiscount: parseFloat(cart.couponDiscount),
-                //     totalPrice: parseFloat(cart.totalPrice),
-                //     payprice: cart.payprice,
-                //     paymentResult: "Paid",
-                //     deliveryStatus: "Order Placed",
-                //     orderStatus: "Ongoing",
-                //     receiptId: receiptId,
-                //     hubId: cart.shippingAddress.hubId,
-                //   })
-                // );
-                // localStorage.removeItem("cartItems");
+                dispatch(
+                  createOrder({
+                    orderType: "Delivery",
+                    orderItems,
+                    shippingAddress: cart.shippingAddress,
+                    paymentMethod: "Online payment",
+                    basePrice: parseFloat(cart.basePrice),
+                    deliveryCharge: parseFloat(cart.deliveryCharge),
+                    tax: parseFloat(cart.taxPrice),
+                    couponDiscount: parseFloat(cart.couponDiscount),
+                    totalPrice: parseFloat(cart.totalPrice),
+                    payprice: cart.payprice,
+                    paymentResult: "Paid",
+                    deliveryStatus: "Order Placed",
+                    orderStatus: "Ongoing",
+                    receiptId: receipt,
+                    hubId: cart.shippingAddress.hubId,
+                  })
+                );
+                localStorage.removeItem("cartItems");
               })
               .catch((err) => console.log(err));
           },
@@ -195,6 +196,7 @@ const CheckoutPayment = ({ history }) => {
     if (success) {
       // eslint-disable-next-line
       history.push(`/ordercompleted/${order.orderId}`);
+      dispatch({ type: ORDER_CREATE_RESET });
     }
   }, [history, success]);
 

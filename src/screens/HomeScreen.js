@@ -812,7 +812,20 @@ const HomeScreen = ({ match, history }) => {
                   name="phone"
                   placeholder="Phone Number"
                   value={phoneNumber}
-                  onChange={(e) => setphoneNumber(e.target.value)}
+                  // onChange={(e) => setphoneNumber(e.target.value)}
+                  onChange={(e) => {
+                    var value = e.target.value;
+                    var mobile = "";
+                    if (value.slice(0, 1) == "+" || value.slice(0, 1) == "0") {
+                      mobile = value.replace(/\D/g, "").slice(-10);
+                      setphoneNumber(mobile);
+                      console.log(mobile);
+                    } else {
+                      mobile = value.replace(/[^a-zA-Z0-9]/g, "");
+                      setphoneNumber(mobile);
+                      console.log(mobile);
+                    }
+                  }}
                   style={{ width: "85%" }}
                 />
               </div>
@@ -926,7 +939,20 @@ const HomeScreen = ({ match, history }) => {
                   name="phone"
                   placeholder="Phone Number"
                   value={phoneNumber}
-                  onChange={(e) => setphoneNumber(e.target.value)}
+                  // onChange={(e) => setphoneNumber(e.target.value)}
+                  onChange={(e) => {
+                    var value = e.target.value;
+                    var mobile = "";
+                    if (value.slice(0, 1) == "+" || value.slice(0, 1) == "0") {
+                      mobile = value.replace(/\D/g, "").slice(-10);
+                      setphoneNumber(mobile);
+                      console.log(mobile);
+                    } else {
+                      mobile = value.replace(/[^a-zA-Z0-9]/g, "");
+                      setphoneNumber(mobile);
+                      console.log(mobile);
+                    }
+                  }}
                   style={{ width: "85%" }}
                 />
               </div>

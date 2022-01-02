@@ -18,8 +18,6 @@ const CheckoutAddress = ({ history }) => {
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
 
-  console.log(cart);
-
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -235,15 +233,16 @@ const CheckoutAddress = ({ history }) => {
         <Alert
           style={{
             position: "fixed",
-            bottom: "20px",
-            right: "0px",
-            width: "300px",
+            bottom: "10px",
+            right: "10px",
+            width: "350px",
             fontSize: "17px",
+            display: showToast ? "unset" : "none",
           }}
           variant="filled"
-          severity="info"
+          severity="error"
         >
-          No hubs are found near your area, Try different address
+          No Store available near by. Can't be delivered at your location.
         </Alert>
       )}
       <div className="wrapper">
@@ -384,13 +383,13 @@ const CheckoutAddress = ({ history }) => {
                               placeholder="Type here to search address"
                               style={{ width: "70%" }}
                             ></input>
-                            <button
+                            <div
                               class="btn-primary-gold-address btn-medium"
                               onClick={getltlnfromadd}
                               style={{ width: "20%" }}
                             >
                               search
-                            </button>
+                            </div>
                           </div>
                           <div className="col-md-6 col-sm-6 col-xs-12">
                             <label className="label-contact">Name*</label>
@@ -557,15 +556,16 @@ const CheckoutAddress = ({ history }) => {
         <Alert
           style={{
             position: "fixed",
-            bottom: "20px",
-            right: "0px",
-            width: "300px",
+            bottom: "10px",
+            right: "10px",
+            width: "350px",
             fontSize: "17px",
+            display: showToast ? "unset" : "none",
           }}
           variant="filled"
-          severity="info"
+          severity="error"
         >
-          No hubs are found near your area,
+          No Store available near by. Can't be delivered at your location.
         </Alert>
       )}
     </div>
