@@ -93,7 +93,7 @@ const CheckoutPayment = ({ history }) => {
       )
       .then((res) => {
         let receipt = res.data.receiptId;
-        setreceiptID(String(res.data.receiptId));
+        cart.receiptId = res.data.receiptId;
 
         var options = {
           // key: "rzp_live_k1Jb6HWsUrIGni",
@@ -141,7 +141,7 @@ const CheckoutPayment = ({ history }) => {
                     paymentResult: "Paid",
                     deliveryStatus: "Order Placed",
                     orderStatus: "Ongoing",
-                    receiptId: receipt,
+                    receiptId: cart.receiptId,
                     hubId: cart.shippingAddress.hubId,
                   })
                 );
