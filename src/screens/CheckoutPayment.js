@@ -116,9 +116,9 @@ const CheckoutPayment = ({ history }) => {
           receipt: res.data.receiptId,
           // callback_url: "https://eneqd3r9zrjok.x.pipedream.net/",
           handler: function (response) {
-            let paymentId: response.razorpay_payment_id;
-            let orderId: response.razorpay_order_id;
-            let signature: response.razorpay_signature;
+            const paymentId = response.razorpay_payment_id;
+            const orderId = response.razorpay_order_id;
+            const signature = response.razorpay_signature;
             return dispatch(verifypayment({ paymentId, orderId, signature }));
 
             // axios
