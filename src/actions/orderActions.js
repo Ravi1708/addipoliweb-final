@@ -92,47 +92,45 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
   }
 };
 
-export const verifypayment = (response) => async (dispatch, getState) => {
-  try {
-    dispatch({
-      type: VERIFY_PAY_REQUEST,
-    });
+export const verifypayment =
+  ({ paymentId, orderId, signature }) =>
+  async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: VERIFY_PAY_REQUEST,
+      });
 
-    const {
-      userLogin: { userInfo },
-    } = getState();
+      const {
+        userLogin: { userInfo },
+      } = getState();
 
-    const config = {
-      headers: {
-        "content-Type": "application/json",
-        "x-access-token": `${userInfo.accessToken}`,
-      },
-    };
+      const config = {
+        headers: {
+          "content-Type": "application/json",
+          "x-access-token": `${userInfo.accessToken}`,
+        },
+      };
 
-    const { data } = await axios.post(
-      `${URL}/user/verify-payment`,
-      {
-        paymentId: response.razorpay_payment_id,
-        orderId: response.razorpay_order_id,
-        signature: response.razorpay_signature,
-      },
-      config
-    );
+      const { data } = await axios.post(
+        `${URL}/user/verify-payment`,
+        { paymentId, orderId, signature },
+        config
+      );
 
-    dispatch({
-      type: VERIFY_PAY_SUCCESS,
-      payload: "payment success",
-    });
-  } catch (error) {
-    dispatch({
-      type: VERIFY_PAY_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
+      dispatch({
+        type: VERIFY_PAY_SUCCESS,
+        payload: "payment success",
+      });
+    } catch (error) {
+      dispatch({
+        type: VERIFY_PAY_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 
 export const payOrder =
   (orderId, paymentResult) => async (dispatch, getState) => {
