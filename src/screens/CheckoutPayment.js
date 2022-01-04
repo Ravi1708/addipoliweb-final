@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { savePaymentMethod } from "../actions/cartActions";
-import { createOrder } from "../actions/orderActions";
+import { createOrder, verifypayment } from "../actions/orderActions";
 import { ORDER_CREATE_RESET } from "../constants/orderConstants";
 
 const CheckoutPayment = ({ history }) => {
@@ -18,6 +18,17 @@ const CheckoutPayment = ({ history }) => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { order, success, error } = orderCreate;
+
+  const verifypay = useSelector((state) => state.verifypayment);
+  const {
+    loading: loadingpay,
+    success: successpay,
+    paystatus,
+    error: errorpay,
+  } = verifypay;
 
   const placeOrderHandler = () => {
     const orderItems = cart.cartItems.map((val) => {
@@ -48,8 +59,6 @@ const CheckoutPayment = ({ history }) => {
     localStorage.removeItem("cartItems");
   };
 
-  let receipt;
-
   const placeOrderOnlineHandler = () => {
     const orderItems = cart.cartItems.map((val) => {
       return {
@@ -57,7 +66,6 @@ const CheckoutPayment = ({ history }) => {
         quantity: val.qty,
       };
     });
-    console.log(receipt);
     dispatch(
       createOrder({
         orderType: "Delivery",
@@ -73,7 +81,7 @@ const CheckoutPayment = ({ history }) => {
         paymentResult: "Paid",
         deliveryStatus: "Order Placed",
         orderStatus: "Ongoing",
-        receiptId: receipt,
+        receiptId: receiptID,
         hubId: cart.shippingAddress.hubId,
       })
     );
@@ -95,8 +103,6 @@ const CheckoutPayment = ({ history }) => {
         config
       )
       .then((res) => {
-        receipt = res.data.receiptId;
-        cart.receiptId = res.data.receiptId;
         setreceiptID(res.data.receiptId);
 
         var options = {
@@ -110,48 +116,23 @@ const CheckoutPayment = ({ history }) => {
           receipt: res.data.receiptId,
           // callback_url: "https://eneqd3r9zrjok.x.pipedream.net/",
           handler: function (response) {
-            axios
-              .post(
-                "https:/api.addipoli-puttus.com/user/verify-payment",
-                {
-                  paymentId: response.razorpay_payment_id,
-                  orderId: response.razorpay_order_id,
-                  signature: response.razorpay_signature,
-                },
-                config
-              )
-              .then(() => {
-                setpaymentsuccess(true);
-                placeOrderOnlineHandler();
-                // const orderItems = cart.cartItems.map((val) => {
-                //   return {
-                //     productId: val.product,
-                //     quantity: val.qty,
-                //   };
-                // });
+            return dispatch(verifypayment(response));
 
-                // dispatch(
-                //   createOrder({
-                //     orderType: "Delivery",
-                //     orderItems,
-                //     shippingAddress: cart.shippingAddress,
-                //     paymentMethod: "Online payment",
-                //     basePrice: parseFloat(cart.basePrice),
-                //     deliveryCharge: parseFloat(cart.deliveryCharge),
-                //     tax: parseFloat(cart.taxPrice),
-                //     couponDiscount: parseFloat(cart.couponDiscount),
-                //     totalPrice: parseFloat(cart.totalPrice),
-                //     payprice: cart.payprice,
-                //     paymentResult: "Paid",
-                //     deliveryStatus: "Order Placed",
-                //     orderStatus: "Ongoing",
-                //     receiptId: cart.receiptId,
-                //     hubId: cart.shippingAddress.hubId,
-                //   })
-                // );
-                // localStorage.removeItem("cartItems");
-              })
-              .catch((err) => console.log(err));
+            // axios
+            //   .post(
+            //     "https:/api.addipoli-puttus.com/user/verify-payment",
+            //     {
+            //       paymentId: response.razorpay_payment_id,
+            //       orderId: response.razorpay_order_id,
+            //       signature: response.razorpay_signature,
+            //     },
+            //     config
+            //   )
+            //   .then(() => {
+            //     setpaymentsuccess(true);
+            //     placeOrderOnlineHandler();
+            //   })
+            //   .catch((err) => console.log(err));
           },
           theme: {
             color: "#3399cc",
@@ -193,16 +174,16 @@ const CheckoutPayment = ({ history }) => {
     history.push("/placeorder");
   };
 
-  const orderCreate = useSelector((state) => state.orderCreate);
-  const { order, success, error } = orderCreate;
-
   useEffect(() => {
+    if (successpay) {
+      placeOrderOnlineHandler();
+    }
     if (success) {
       // eslint-disable-next-line
       history.push(`/ordercompleted/${order.orderId}`);
       dispatch({ type: ORDER_CREATE_RESET });
     }
-  }, [history, success]);
+  }, [history, success, successpay]);
 
   return (
     <div>

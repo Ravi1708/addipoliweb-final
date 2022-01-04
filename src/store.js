@@ -32,6 +32,7 @@ import {
   orderListMyReducer,
   orderPayReducer,
   orderListReducer,
+  verifypaymentReducer,
 } from "./reducers/orderReducers";
 
 import { saveShippingAddress } from "./actions/cartActions";
@@ -61,6 +62,7 @@ const reducer = combineReducers({
   orderPay: orderPayReducer,
   orderListMy: orderListMyReducer,
   orderList: orderListReducer,
+  verifypayment: verifypaymentReducer,
 });
 
 // get cart items from local storage

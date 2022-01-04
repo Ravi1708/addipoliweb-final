@@ -15,6 +15,9 @@ import {
   ORDER_LIST_FAIL,
   ORDER_LIST_SUCCESS,
   ORDER_LIST_REQUEST,
+  VERIFY_PAY_REQUEST,
+  VERIFY_PAY_SUCCESS,
+  VERIFY_PAY_FAIL,
 } from "../constants/orderConstants";
 
 const URL = "https://api.addipoli-puttus.com";
@@ -81,6 +84,48 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: ORDER_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const verifypayment = (response) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: VERIFY_PAY_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "content-Type": "application/json",
+        "x-access-token": `${userInfo.accessToken}`,
+      },
+    };
+
+    const { data } = await axios.post(
+      `${URL}/user/verify-payment`,
+      {
+        paymentId: response.razorpay_payment_id,
+        orderId: response.razorpay_order_id,
+        signature: response.razorpay_signature,
+      },
+      config
+    );
+
+    dispatch({
+      type: VERIFY_PAY_SUCCESS,
+      payload: "payment success",
+    });
+  } catch (error) {
+    dispatch({
+      type: VERIFY_PAY_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
