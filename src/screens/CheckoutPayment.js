@@ -88,7 +88,7 @@ const CheckoutPayment = ({ history }) => {
     localStorage.removeItem("cartItems");
   };
 
-  const handlePay = async () => {
+  const handlePay = () => {
     const config = {
       headers: {
         "content-Type": "application/json",
@@ -96,7 +96,7 @@ const CheckoutPayment = ({ history }) => {
       },
     };
 
-    await axios
+    axios
       .post(
         "https:/api.addipoli-puttus.com/user/online-payment",
         { totalPrice: parseFloat(cart.totalPrice) },
