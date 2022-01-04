@@ -1081,11 +1081,9 @@ const Header = ({ location, match }) => {
                     if (value.slice(0, 1) == "+" || value.slice(0, 1) == "0") {
                       mobile = value.replace(/\D/g, "").slice(-10);
                       setphoneNumber(mobile);
-                      console.log(mobile);
                     } else {
                       mobile = value.replace(/[^a-zA-Z0-9]/g, "");
                       setphoneNumber(mobile);
-                      console.log(mobile);
                     }
                   }}
                   style={{ width: "85%" }}

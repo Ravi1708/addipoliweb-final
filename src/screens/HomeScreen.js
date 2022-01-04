@@ -135,7 +135,7 @@ const HomeScreen = ({ match, history }) => {
     }
   };
 
-  const getotpHandler = (e) => {
+  const getotpHandler = () => {
     dispatch(sendotp(phoneNumber));
   };
 

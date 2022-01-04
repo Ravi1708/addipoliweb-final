@@ -13,7 +13,7 @@ const CheckoutPayment = ({ history }) => {
   const [paymentID, setpaymentID] = useState("");
   const [orderID, setorderID] = useState("");
   const [signature, setsignature] = useState("");
-  const [receiptID, setreceiptID] = useState(" ");
+  const [receiptID, setreceiptID] = useState("null");
   const [paymentsuccess, setpaymentsuccess] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -48,34 +48,37 @@ const CheckoutPayment = ({ history }) => {
     localStorage.removeItem("cartItems");
   };
 
-  // const placeOrderOnlineHandler = () => {
-  //   const orderItems = cart.cartItems.map((val) => {
-  //     return {
-  //       productId: val.product,
-  //       quantity: val.qty,
-  //     };
-  //   });
-  //   dispatch(
-  //     createOrder({
-  //       orderType: "Delivery",
-  //       orderItems: orderItems,
-  //       shippingAddress: cart.shippingAddress,
-  //       paymentMethod: "Online payment",
-  //       basePrice: parseFloat(cart.basePrice),
-  //       deliveryCharge: parseFloat(cart.deliveryCharge),
-  //       tax: parseFloat(cart.taxPrice),
-  //       couponDiscount: parseFloat(cart.couponDiscount),
-  //       totalPrice: parseFloat(cart.totalPrice),
-  //       payprice: cart.payprice,
-  //       paymentResult: "Paid",
-  //       deliveryStatus: "Order Placed",
-  //       orderStatus: "Ongoing",
-  //       receiptId: receiptID,
-  //       hubId: cart.shippingAddress.hubId,
-  //     })
-  //   );
-  //   localStorage.removeItem("cartItems");
-  // };
+  let receipt;
+
+  const placeOrderOnlineHandler = () => {
+    const orderItems = cart.cartItems.map((val) => {
+      return {
+        productId: val.product,
+        quantity: val.qty,
+      };
+    });
+    console.log(receipt);
+    dispatch(
+      createOrder({
+        orderType: "Delivery",
+        orderItems: orderItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: "Online payment",
+        basePrice: parseFloat(cart.basePrice),
+        deliveryCharge: parseFloat(cart.deliveryCharge),
+        tax: parseFloat(cart.taxPrice),
+        couponDiscount: parseFloat(cart.couponDiscount),
+        totalPrice: parseFloat(cart.totalPrice),
+        payprice: cart.payprice,
+        paymentResult: "Paid",
+        deliveryStatus: "Order Placed",
+        orderStatus: "Ongoing",
+        receiptId: receipt,
+        hubId: cart.shippingAddress.hubId,
+      })
+    );
+    localStorage.removeItem("cartItems");
+  };
 
   const handlePay = async () => {
     const config = {
@@ -85,15 +88,16 @@ const CheckoutPayment = ({ history }) => {
       },
     };
 
-    axios
+    await axios
       .post(
         "https:/api.addipoli-puttus.com/user/online-payment",
         { totalPrice: parseFloat(cart.totalPrice) },
         config
       )
       .then((res) => {
-        let receipt = res.data.receiptId;
+        receipt = res.data.receiptId;
         cart.receiptId = res.data.receiptId;
+        setreceiptID(res.data.receiptId);
 
         var options = {
           // key: "rzp_live_k1Jb6HWsUrIGni",
@@ -118,34 +122,34 @@ const CheckoutPayment = ({ history }) => {
               )
               .then(() => {
                 setpaymentsuccess(true);
-                // placeOrderOnlineHandler();
-                const orderItems = cart.cartItems.map((val) => {
-                  return {
-                    productId: val.product,
-                    quantity: val.qty,
-                  };
-                });
+                placeOrderOnlineHandler();
+                // const orderItems = cart.cartItems.map((val) => {
+                //   return {
+                //     productId: val.product,
+                //     quantity: val.qty,
+                //   };
+                // });
 
-                dispatch(
-                  createOrder({
-                    orderType: "Delivery",
-                    orderItems,
-                    shippingAddress: cart.shippingAddress,
-                    paymentMethod: "Online payment",
-                    basePrice: parseFloat(cart.basePrice),
-                    deliveryCharge: parseFloat(cart.deliveryCharge),
-                    tax: parseFloat(cart.taxPrice),
-                    couponDiscount: parseFloat(cart.couponDiscount),
-                    totalPrice: parseFloat(cart.totalPrice),
-                    payprice: cart.payprice,
-                    paymentResult: "Paid",
-                    deliveryStatus: "Order Placed",
-                    orderStatus: "Ongoing",
-                    receiptId: cart.receiptId,
-                    hubId: cart.shippingAddress.hubId,
-                  })
-                );
-                localStorage.removeItem("cartItems");
+                // dispatch(
+                //   createOrder({
+                //     orderType: "Delivery",
+                //     orderItems,
+                //     shippingAddress: cart.shippingAddress,
+                //     paymentMethod: "Online payment",
+                //     basePrice: parseFloat(cart.basePrice),
+                //     deliveryCharge: parseFloat(cart.deliveryCharge),
+                //     tax: parseFloat(cart.taxPrice),
+                //     couponDiscount: parseFloat(cart.couponDiscount),
+                //     totalPrice: parseFloat(cart.totalPrice),
+                //     payprice: cart.payprice,
+                //     paymentResult: "Paid",
+                //     deliveryStatus: "Order Placed",
+                //     orderStatus: "Ongoing",
+                //     receiptId: cart.receiptId,
+                //     hubId: cart.shippingAddress.hubId,
+                //   })
+                // );
+                // localStorage.removeItem("cartItems");
               })
               .catch((err) => console.log(err));
           },
