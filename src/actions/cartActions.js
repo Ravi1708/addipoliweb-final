@@ -17,7 +17,6 @@ const URL = "https://api.addipoli-puttus.com";
 export const addToCart = (id, qty) => async (dispatch, getState) => {
   const { data } = await axios.get(`${URL}/common/products/${id}`);
 
-  console.log(data);
   dispatch({
     type: CART_ADD_ITEM,
     payload: {
@@ -105,7 +104,6 @@ export const verifyAddress = (lat, lon) => async (dispatch) => {
       payload: data,
     });
   } catch (error) {
-    console.log("verified add:" + error);
     dispatch({
       type: VERIFY_SHIPPING_ADDRESS_FAIL,
       payload:

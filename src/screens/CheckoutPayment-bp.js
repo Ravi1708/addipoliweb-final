@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { savePaymentMethod } from "../actions/cartActions";
-import { createOrder, payonline, verifypayment } from "../actions/orderActions";
+import { createOrder, verifypayment } from "../actions/orderActions";
 import { ORDER_CREATE_RESET } from "../constants/orderConstants";
 
 const CheckoutPayment = ({ history }) => {
@@ -14,7 +14,6 @@ const CheckoutPayment = ({ history }) => {
   const [orderID, setorderID] = useState("");
   const [signature, setsignature] = useState("");
   const [receiptID, setreceiptID] = useState("null");
-  const [razorpayOrderId, setrazorpayOrderId] = useState();
   const [paymentsuccess, setpaymentsuccess] = useState(false);
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -30,14 +29,6 @@ const CheckoutPayment = ({ history }) => {
     paystatus,
     error: errorpay,
   } = verifypay;
-
-  const orderPayOnline = useSelector((state) => state.orderPayOnline);
-  const {
-    loading: loadingpayonlinepay,
-    success: successgetonlinepay,
-    onlinepay,
-    error: errorgetonlinestatus,
-  } = orderPayOnline;
 
   const placeOrderHandler = () => {
     const orderItems = cart.cartItems.map((val) => {
@@ -61,7 +52,36 @@ const CheckoutPayment = ({ history }) => {
         paymentResult: "Unpaid",
         deliveryStatus: "Order Placed",
         orderStatus: "Ongoing",
-        receiptId: onlinepay.receiptId,
+        receiptId: receiptID,
+        hubId: cart.shippingAddress.hubId,
+      })
+    );
+    localStorage.removeItem("cartItems");
+  };
+
+  const placeOrderOnlineHandler = () => {
+    const orderItems = cart.cartItems.map((val) => {
+      return {
+        productId: val.product,
+        quantity: val.qty,
+      };
+    });
+    dispatch(
+      createOrder({
+        orderType: "Delivery",
+        orderItems: orderItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: "Online payment",
+        basePrice: parseFloat(cart.basePrice),
+        deliveryCharge: parseFloat(cart.deliveryCharge),
+        tax: parseFloat(cart.taxPrice),
+        couponDiscount: parseFloat(cart.couponDiscount),
+        totalPrice: parseFloat(cart.totalPrice),
+        payprice: cart.payprice,
+        paymentResult: "Paid",
+        deliveryStatus: "Order Placed",
+        orderStatus: "Ongoing",
+        receiptId: receiptID,
         hubId: cart.shippingAddress.hubId,
       })
     );
@@ -69,40 +89,62 @@ const CheckoutPayment = ({ history }) => {
   };
 
   const handlePay = () => {
-    var options = {
-      // key: "rzp_live_k1Jb6HWsUrIGni",
-      key: "rzp_test_XFs5xG4NoberIv",
-      amount: parseFloat(cart.totalPrice) * 100,
-      currency: "INR",
-      name: "Addipoli Puttus",
-      image: "assets/img/Logo.png",
-      order_id: onlinepay.razorpayOrderId,
-      handler: function (response) {
-        console.log(response);
-        dispatch(verifypayment(response));
-
-        // axios
-        //   .post(
-        //     "https:/api.addipoli-puttus.com/user/verify-payment",
-        //     {
-        //       paymentId: response.razorpay_payment_id,
-        //       orderId: response.razorpay_order_id,
-        //       signature: response.razorpay_signature,
-        //     },
-        //     config
-        //   )
-        //   .then(() => {
-        //     setpaymentsuccess(true);
-        //     placeOrderOnlineHandler();
-        //   })
-        //   .catch((err) => console.log(err));
-      },
-      theme: {
-        color: "#3399cc",
+    const config = {
+      headers: {
+        "content-Type": "application/json",
+        "x-access-token": `${userInfo.accessToken}`,
       },
     };
-    var rzp1 = new window.Razorpay(options);
-    rzp1.open();
+
+    axios
+      .post(
+        "https:/api.addipoli-puttus.com/user/online-payment",
+        { totalPrice: parseFloat(cart.totalPrice) },
+        config
+      )
+      .then((res) => {
+        setreceiptID(res.data.receiptId);
+
+        var options = {
+          // key: "rzp_live_k1Jb6HWsUrIGni",
+          key: "rzp_test_XFs5xG4NoberIv",
+          amount: parseFloat(cart.totalPrice) * 100,
+          currency: "INR",
+          name: "Addipoli Puttus",
+          image: "assets/img/Logo.png",
+          order_id: res.data.razorpayOrderId,
+          receipt: res.data.receiptId,
+          // callback_url: "https://eneqd3r9zrjok.x.pipedream.net/",
+          handler: function (response) {
+            // const paymentId = response.razorpay_payment_id;
+            // const orderId = response.razorpay_order_id;
+            // const signature = response.razorpay_signature;
+            // return dispatch(verifypayment({ paymentId, orderId, signature }));
+
+            axios
+              .post(
+                "https:/api.addipoli-puttus.com/user/verify-payment",
+                {
+                  paymentId: response.razorpay_payment_id,
+                  orderId: response.razorpay_order_id,
+                  signature: response.razorpay_signature,
+                },
+                config
+              )
+              .then(() => {
+                setpaymentsuccess(true);
+                placeOrderOnlineHandler();
+              })
+              .catch((err) => console.log(err));
+          },
+          theme: {
+            color: "#3399cc",
+          },
+        };
+        var rzp1 = new window.Razorpay(options);
+        rzp1.open();
+      })
+      .catch((err) => console.log(err));
   };
 
   // calculate price
@@ -136,14 +178,6 @@ const CheckoutPayment = ({ history }) => {
   };
 
   useEffect(() => {
-    if (onlinepay) {
-      setrazorpayOrderId(onlinepay.razorpayOrderId);
-      setreceiptID(onlinepay.receiptId);
-    }
-    if (!onlinepay) {
-      dispatch(payonline({ totalPrice: parseFloat(cart.totalPrice) }));
-    }
-
     if (successpay) {
       placeOrderOnlineHandler();
     }
@@ -152,37 +186,7 @@ const CheckoutPayment = ({ history }) => {
       history.push(`/ordercompleted/${order.orderId}`);
       dispatch({ type: ORDER_CREATE_RESET });
     }
-  }, [dispatch, history, success, successpay]);
-
-  const placeOrderOnlineHandler = () => {
-    console.log(receiptID);
-    const orderItems = cart.cartItems.map((val) => {
-      return {
-        productId: val.product,
-        quantity: val.qty,
-      };
-    });
-    dispatch(
-      createOrder({
-        orderType: "Delivery",
-        orderItems: orderItems,
-        shippingAddress: cart.shippingAddress,
-        paymentMethod: "Online payment",
-        basePrice: parseFloat(cart.basePrice),
-        deliveryCharge: parseFloat(cart.deliveryCharge),
-        tax: parseFloat(cart.taxPrice),
-        couponDiscount: parseFloat(cart.couponDiscount),
-        totalPrice: parseFloat(cart.totalPrice),
-        payprice: cart.payprice,
-        paymentResult: "Paid",
-        deliveryStatus: "Order Placed",
-        orderStatus: "Ongoing",
-        receiptId: onlinepay.receiptId,
-        hubId: cart.shippingAddress.hubId,
-      })
-    );
-    localStorage.removeItem("cartItems");
-  };
+  }, [history, success, successpay]);
 
   return (
     <div>

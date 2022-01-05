@@ -22,6 +22,10 @@ import {
   VERIFY_PAY_SUCCESS,
   VERIFY_PAY_FAIL,
   VERIFY_PAY_RESET,
+  ONLINE_PAY_REQUEST,
+  ONLINE_PAY_SUCCESS,
+  ONLINE_PAY_FAIL,
+  ONLINE_PAY_RESET,
 } from "../constants/orderConstants";
 
 export const orderCreateReducer = (state = {}, action) => {
@@ -42,6 +46,30 @@ export const orderCreateReducer = (state = {}, action) => {
         error: action.payload,
       };
     case ORDER_CREATE_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+export const orderPayOnlineReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ONLINE_PAY_REQUEST:
+      return {
+        loading: true,
+      };
+    case ONLINE_PAY_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        onlinepay: action.payload,
+      };
+    case ONLINE_PAY_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    case ONLINE_PAY_RESET:
       return {};
     default:
       return state;

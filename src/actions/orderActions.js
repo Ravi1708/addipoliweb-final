@@ -18,6 +18,9 @@ import {
   VERIFY_PAY_REQUEST,
   VERIFY_PAY_SUCCESS,
   VERIFY_PAY_FAIL,
+  ONLINE_PAY_REQUEST,
+  ONLINE_PAY_SUCCESS,
+  ONLINE_PAY_FAIL,
 } from "../constants/orderConstants";
 
 const URL = "https://api.addipoli-puttus.com";
@@ -92,45 +95,85 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
   }
 };
 
-export const verifypayment =
-  ({ paymentId, orderId, signature }) =>
-  async (dispatch, getState) => {
-    try {
-      dispatch({
-        type: VERIFY_PAY_REQUEST,
-      });
+export const payonline = (totalPrice) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ONLINE_PAY_REQUEST,
+    });
 
-      const {
-        userLogin: { userInfo },
-      } = getState();
+    const {
+      userLogin: { userInfo },
+    } = getState();
 
-      const config = {
-        headers: {
-          "content-Type": "application/json",
-          "x-access-token": `${userInfo.accessToken}`,
-        },
-      };
+    const config = {
+      headers: {
+        "x-access-token": `${userInfo.accessToken}`,
+      },
+    };
 
-      const { data } = await axios.post(
-        `${URL}/user/verify-payment`,
-        { paymentId, orderId, signature },
-        config
-      );
+    const { data } = await axios.post(
+      `${URL}/user/online-payment`,
+      totalPrice,
+      config
+    );
 
-      dispatch({
-        type: VERIFY_PAY_SUCCESS,
-        payload: "payment success",
-      });
-    } catch (error) {
-      dispatch({
-        type: VERIFY_PAY_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
-      });
-    }
-  };
+    dispatch({
+      type: ONLINE_PAY_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ONLINE_PAY_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const verifypayment = (paymentResult) => async (dispatch, getState) => {
+  console.log(paymentResult);
+  try {
+    dispatch({
+      type: VERIFY_PAY_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "content-Type": "application/json",
+        "x-access-token": `${userInfo.accessToken}`,
+      },
+    };
+
+    const { data } = await axios.post(
+      `${URL}/user/verify-payment`,
+      {
+        paymentId: paymentResult.razorpay_payment_id,
+        orderId: paymentResult.razorpay_order_id,
+        signature: paymentResult.razorpay_signature,
+      },
+      config
+    );
+
+    dispatch({
+      type: VERIFY_PAY_SUCCESS,
+      payload: "payment success",
+    });
+  } catch (error) {
+    dispatch({
+      type: VERIFY_PAY_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
 export const payOrder =
   (orderId, paymentResult) => async (dispatch, getState) => {
