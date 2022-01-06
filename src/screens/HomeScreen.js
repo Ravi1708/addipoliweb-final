@@ -461,13 +461,20 @@ const HomeScreen = ({ match, history }) => {
                       </a>
                     </div>
                   </div> */}
-                  <div className="portfolioFilter">
+                  <div className="portfolioFilter" style={{ maxWidth: "100%" }}>
                     <TabContext value={cat}>
-                      <div className="portfolioFilter-inner">
+                      <div
+                        className="portfolioFilter-inner "
+                        style={{ maxWidth: "100%" }}
+                      >
                         <TabList
                           onChange={handleCat}
                           aria-label="lab API tabs example"
+                          classNAme="row"
                           activeclassName="current"
+                          variant="scrollable"
+                          scrollButtons
+                          allowScrollButtonsMobile
                         >
                           <Tab
                             className="cat-tab"

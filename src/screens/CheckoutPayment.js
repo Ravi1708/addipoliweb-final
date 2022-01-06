@@ -3,7 +3,11 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { savePaymentMethod } from "../actions/cartActions";
 import { createOrder, payonline, verifypayment } from "../actions/orderActions";
-import { ORDER_CREATE_RESET } from "../constants/orderConstants";
+import {
+  ONLINE_PAY_RESET,
+  ORDER_CREATE_RESET,
+  VERIFY_PAY_RESET,
+} from "../constants/orderConstants";
 
 const CheckoutPayment = ({ history }) => {
   const cart = useSelector((state) => state.cart);
@@ -70,8 +74,8 @@ const CheckoutPayment = ({ history }) => {
 
   const handlePay = () => {
     var options = {
-      // key: "rzp_live_k1Jb6HWsUrIGni",
-      key: "rzp_test_XFs5xG4NoberIv",
+      key: "rzp_live_k1Jb6HWsUrIGni",
+      // key: "rzp_test_XFs5xG4NoberIv",
       amount: parseFloat(cart.totalPrice) * 100,
       currency: "INR",
       name: "Addipoli Puttus",
@@ -151,6 +155,8 @@ const CheckoutPayment = ({ history }) => {
       // eslint-disable-next-line
       history.push(`/ordercompleted/${order.orderId}`);
       dispatch({ type: ORDER_CREATE_RESET });
+      dispatch({ type: ONLINE_PAY_RESET });
+      dispatch({ type: VERIFY_PAY_RESET });
     }
   }, [dispatch, history, success, successpay]);
 
