@@ -1034,7 +1034,7 @@ h6 {
   line-height: normal;
   margin: 0 0 25px 0;
   font-weight: 700;
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 h1 {
@@ -1344,14 +1344,14 @@ p {
 }
 .btn-primary-gold-address {
   background: #04e04c;
-  color: #ffffff;
+  color: #ffffff !important;
   border-color: #04e04c;
   float: right;
 }
 
 .btn-primary-gold-address:hover {
   background: #383848;
-  border-color: #383848;
+  border-color: #383848 !important;
   color: #ffffff;
 }
 
@@ -2943,7 +2943,7 @@ textarea {
 }
 
 .portfolioFilter .cat-tab {
-  font-family: "Graviola-Regular" !important;
+  font-family: 'Source Sans Pro' !important;
   text-transform: none !important;
   display: inline-block !important;
   width: auto !important;
@@ -2999,9 +2999,11 @@ textarea {
 }
 
 .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
-  background-color: #f4f2ed !important;
-  border-top-left-radius: 20px !important;
-  border-top-right-radius: 20px !important;
+  background-color: #20202f !important;
+  border-top-left-radius: 30px !important;
+  border-top-right-radius: 30px !important;
+  border-bottom-left-radius: 30px !important;
+  border-bottom-right-radius: 30px !important;
 }
 
 .MuiTabs-indicator {
@@ -6077,8 +6079,7 @@ textarea {
   background-repeat: no-repeat;
   background-size: cover;
   height: 200px;
-  position: relative;
-  margin-bottom: 10px;
+  position: relative;  
   border-radius: 16px 16px 0px 0px;
 }
 
@@ -6089,8 +6090,10 @@ textarea {
 
 .shop-main-list h5 {
   font-size: 13px;
-  color: #20202f;
+  font-weight: 600;
+  color: #383848;
   margin: 4px 0 10px 0;
+  padding: 0 7px 0 7px;
 }
 
 .shop-main-list h5 strong {
@@ -6117,7 +6120,22 @@ textarea {
 .shop-main-list:hover {
   transform: scale(1.1);
 }
-
+.count-nom {
+  border-radius: 5px !important;
+  outline: none;
+  border: none;
+  padding: 5px 0 !important;
+  width: 50px !important;
+  height: 28px !important;
+  text-align: center;
+  font-size: 16px;
+  color: #fff;
+  margin: 0 2px 4px !important;
+  background: transparent;
+  box-shadow: inset -2px -2px 2px rgb(255 255 255 / 20%),
+    inset 2px 5px 15px rgb(0 0 0 / 35%);
+  font-family: 'Source Sans Pro',sans-serif !important;
+}
 /*------------------------------------------------------------------
 [15. Shop Single ]
 ------------------------------------------------------------------*/
@@ -6653,7 +6671,7 @@ table.shop-cart-table {
 
 table.shop-cart-table th,
 table.shop-cart-table td {
-  padding: 18px 0;
+  padding: 15px 0;
 }
 
 table.shop-cart-table td {
@@ -6818,8 +6836,7 @@ table.shop-cart-table .shop-cart-close {
 
 .proceed-check .btn-medium {
   width: 100%;
-  /* color: #04e04c; */
-  color: #ffffff;
+  color: #04e04c;  
   border-color: #04e04c;
 }
 .proceed-check a {
@@ -7650,21 +7667,22 @@ body main .team-page {
 .login-popup p {
   font-size: 16px;
   font-weight: 600;
-  line-height: 45px;
+  line-height: 35px;
   letter-spacing: 0.5px;
   color: #fff;
   margin: 10px 5px 30px 0px;
   text-align: center;
   background-color: #04e04c;
   border-radius: 50px;
-  height: 50px;
+  height: 40px;
+  width: 50px;
 }
 .login-popup form h4 {
   font-size: 20px;
 }
 
 .login-popup span {
-  font-size: 20px;
+  font-size: 15px;
   padding: 10px 0;
   font-weight: 600;
 }
@@ -7684,9 +7702,10 @@ body main .team-page {
   font-size: 15px;
   font-weight: bold;
   padding: 8px 15px;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   transition: transform 80ms ease-in;
-  height: 50px;
+  height: 40px;
+  line-height: 20px;
 }
 .login-popup button:hover {
   background-color: #ec7d3c;
@@ -7765,15 +7784,22 @@ body main .team-page {
 
 .signup-popup p {
   font-size: 16px;
-  font-weight: 500;
-  line-height: 20px;
+  font-weight: 600;
+  line-height: 35px;
   letter-spacing: 0.5px;
-  color: black;
-  margin: 20px 0 30px;
+  color: #fff;
+  margin: 10px 5px 30px 0px;
+  text-align: center;
+  background-color: #04e04c;
+  border-radius: 50px;
+  height: 40px;
+  width: 50px;
 }
 
 .signup-popup span {
-  font-size: 12px;
+  font-size: 15px;
+  padding: 10px 0;
+  font-weight: 600;
 }
 
 .signuppopup a {
@@ -7791,9 +7817,10 @@ body main .team-page {
   font-size: 15px;
   font-weight: bold;
   padding: 8px 15px;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   transition: transform 80ms ease-in;
-  height: 50px;
+  height: 40px;
+  line-height: 20px;
 }
 
 .signup-popup button:active {
@@ -7884,7 +7911,7 @@ input[type="radio"]:after {
   content: "" !important;
   display: inline-block !important;
   visibility: visible !important;
-  border: 2px solid #04e04c !important;
+  border: 3px solid #04e04c !important;
 }
 
 input[type="radio"]:checked:after {
@@ -7898,7 +7925,7 @@ input[type="radio"]:checked:after {
   content: "" !important;
   display: inline-block !important;
   visibility: visible !important;
-  border: 2px solid white !important;
+  border: 3px solid #f4f2ed  !important;
 }
 .label-contact {
   font-size: 13px;
@@ -7979,6 +8006,29 @@ input[type="radio"]:checked:after {
     font-size: 12px;
     width: 90%;
   }
+  .shop-cart-table{
+    font-size: 12px !important;
+  }
+  .product-cart img{
+    display: none;
+  }
+  .price-textbox input{
+    height: 35px !important;
+    width: 80px !important;
+  }
+  .minus-text {
+    top: 5px;
+    left: 10px;
+  }
+  .plus-text {    
+    top: 5px;
+    right: 10px;    
+  }
+  table.shop-cart-table th,
+table.shop-cart-table td {
+  padding: 10px 5px;
+}
+  
 }
 @media (max-width: 766px) and (min-width: 580px) {
   .delivery-type {
@@ -8002,6 +8052,28 @@ input[type="radio"]:checked:after {
     align-content: center;
     justify-content: center;
   }
+  .shop-cart-table{
+    font-size: 12px !important;
+  }
+  .product-cart img{
+    display: none;
+  }
+  .price-textbox input{
+    height: 25px !important;
+    width: 70px !important;
+  }
+  .minus-text {
+    top: 0px;
+    left: 5px;
+  }
+  .plus-text {    
+    top: 0px;
+    right: 5px;    
+  }
+  table.shop-cart-table th,
+table.shop-cart-table td {
+  padding: 10px 5px;
+}
 }
 @media (max-width: 579px) and (min-width: 530px) {
   .shop-product {
@@ -8030,6 +8102,28 @@ input[type="radio"]:checked:after {
     align-content: center;
     justify-content: center;
   }
+  .shop-cart-table{
+    font-size: 12px !important;
+  }
+  .product-cart img{
+    display: none;
+  }
+  .price-textbox input{
+    height: 25px !important;
+    width: 70px !important;
+  }
+  .minus-text {
+    top: 0px;
+    left: 5px;
+  }
+  .plus-text {    
+    top: 0px;
+    right: 5px;    
+  }
+  table.shop-cart-table th,
+table.shop-cart-table td {
+  padding: 10px 5px;
+}
 }
 @media (max-width: 529px) and (min-width: 490px) {
   .modal-dialog {
@@ -8061,6 +8155,31 @@ input[type="radio"]:checked:after {
     align-content: center;
     justify-content: center;
   }
+  .shop-cart-table{
+    font-size: 12px !important;
+  }
+  .product-cart img{
+    display: none;
+  }
+  .price-textbox input{
+    height: 25px !important;
+    width: 70px !important;
+  }
+  .minus-text {
+    top: 0px;
+    left: 5px;
+  }
+  .plus-text {    
+    top: 0px;
+    right: 5px;    
+  }
+  table.shop-cart-table thead th{
+    font-size: 10px !important;
+  }
+  table.shop-cart-table th,
+table.shop-cart-table td {
+  padding: 10px 5px;
+}
 }
 @media (max-width: 489px) and (min-width: 440px) {
   .modal-dialog {
@@ -8106,6 +8225,31 @@ input[type="radio"]:checked:after {
     font-size: 12px;
     width: 90%;
   }
+  .shop-cart-table{
+    font-size: 12px !important;
+  }
+  .product-cart img{
+    display: none;
+  }
+  .price-textbox input{
+    height: 25px !important;
+    width: 70px !important;
+  }
+  .minus-text {
+    top: 0px;
+    left: 5px;
+  }
+  .plus-text {    
+    top: 0px;
+    right: 5px;    
+  }
+  table.shop-cart-table thead th{
+    font-size: 10px !important;
+  }
+  table.shop-cart-table th,
+table.shop-cart-table td {
+  padding: 10px 5px;
+}
 }
 @media (max-width: 439px) and (min-width: 400px) {
   .modal-dialog {
@@ -8174,7 +8318,7 @@ input[type="radio"]:checked:after {
     width: 18px !important;
     height: 18px !important;
     border-radius: 18px !important;
-    top: -1px !important;
+    top: -3px !important;
     left: -1px !important;
     position: relative !important;
     background-color: #ffffff !important;
@@ -8183,24 +8327,49 @@ input[type="radio"]:checked:after {
     visibility: visible !important;
     border: 2px solid #04e04c !important;
   }
-
+  
   input[type="radio"]:checked:after {
     width: 18px !important;
     height: 18px !important;
     border-radius: 18px !important;
-    top: -1px !important;
+    top: -3px !important;
     left: -1px !important;
     position: relative !important;
     background-color: #04e04c !important;
     content: "" !important;
     display: inline-block !important;
     visibility: visible !important;
-    border: 2px solid white !important;
+    border: 2px solid #f4f2ed  !important;
   }
   .btn-medium {
     font-size: 12px;
     width: 90%;
   }
+  .shop-cart-table{
+    font-size: 12px !important;
+  }
+  .product-cart img{
+    display: none;
+  }
+  .price-textbox input{
+    height: 25px !important;
+    width: 70px !important;
+  }
+  .minus-text {
+    top: 0px;
+    left: 5px;
+  }
+  .plus-text {    
+    top: 0px;
+    right: 5px;    
+  }
+  table.shop-cart-table thead th{
+    font-size: 10px !important;
+  }
+  table.shop-cart-table th,
+table.shop-cart-table td {
+  padding: 10px 5px;
+}
 }
 @media (max-width: 399px) and (min-width: 340px) {
   .modal-dialog {
@@ -8260,8 +8429,8 @@ input[type="radio"]:checked:after {
     margin-right: 0px !important;
   }
   .form-check-input {
-    margin-left: 3px !important;
-    margin-left: 3px !important;
+    margin-right: 5px !important;
+    margin-left: 5px !important;
   }
   input[type="radio"]:after {
     width: 15px !important;
@@ -8288,12 +8457,37 @@ input[type="radio"]:checked:after {
     content: "" !important;
     display: inline-block !important;
     visibility: visible !important;
-    border: 2px solid white !important;
+    border: 2px solid #f4f2ed  !important;
   }
   .btn-medium {
     font-size: 12px;
     width: 90%;
   }
+  .shop-cart-table{
+    font-size: 12px !important;
+  }
+  .product-cart img{
+    display: none;
+  }
+  .price-textbox input{
+    height: 25px !important;
+    width: 70px !important;
+  }
+  .minus-text {
+    top: 0px;
+    left: 5px;
+  }
+  .plus-text {    
+    top: 0px;
+    right: 5px;    
+  }
+  table.shop-cart-table thead th{
+    font-size: 10px !important;
+  }
+  table.shop-cart-table th,
+table.shop-cart-table td {
+  padding: 10px 5px;
+}
 }
 @media (max-width: 339px) and (min-width: 300px) {
   .modal-dialog {
@@ -8360,8 +8554,8 @@ input[type="radio"]:checked:after {
     margin-right: 0px !important;
   }
   .form-check-input {
-    margin-left: 1px !important;
-    margin-left: 1px !important;
+    margin-right: 5px !important;
+    margin-left: 5px !important;
   }
   input[type="radio"]:after {
     width: 15px !important;
@@ -8388,8 +8582,33 @@ input[type="radio"]:checked:after {
     content: "" !important;
     display: inline-block !important;
     visibility: visible !important;
-    border: 2px solid white !important;
+    border: 2px solid #f4f2ed  !important;
   }
+  .shop-cart-table{
+    font-size: 12px !important;
+  }
+  .product-cart img{
+    display: none;
+  }
+  .price-textbox input{
+    height: 25px !important;
+    width: 70px !important;
+  }
+  .minus-text {
+    top: 0px;
+    left: 5px;
+  }
+  .plus-text {    
+    top: 0px;
+    right: 5px;    
+  }
+  table.shop-cart-table thead th{
+    font-size: 10px !important;
+  }
+  table.shop-cart-table th,
+table.shop-cart-table td {
+  padding: 10px 5px;
+}
 }
 @media (max-width: 299px) and (min-width: 250px) {
   .modal-dialog {
@@ -8458,4 +8677,29 @@ input[type="radio"]:checked:after {
     margin-left: 5px !important;
     margin-left: 5px !important;
   }
+  .shop-cart-table{
+    font-size: 12px !important;
+  }
+  .product-cart img{
+    display: none;
+  }
+  .price-textbox input{
+    height: 25px !important;
+    width: 70px !important;
+  }
+  .minus-text {
+    top: 0px;
+    left: 5px;
+  }
+  .plus-text {    
+    top: 0px;
+    right: 5px;    
+  }
+  table.shop-cart-table thead th{
+    font-size: 10px !important;
+  }
+  table.shop-cart-table th,
+table.shop-cart-table td {
+  padding: 10px 5px;
+}
 }

@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import { addToCart, removeFromCart } from "../actions/cartActions";
 import { LinkContainer } from "react-router-bootstrap";
+import { ORDER_CREATE_RESET } from "../constants/orderConstants";
 
 const CheckoutScreen = ({ match, history }) => {
   const [keyword, setKeyword] = useState(match.params.keyword);
@@ -32,11 +33,8 @@ const CheckoutScreen = ({ match, history }) => {
   let distance = Number(shippingAddress.distance.slice(0, 3));
 
   if (distance <= 2) {
-    console.log("distance less than 2");
     if (cart.basePrice >= 500) {
       cart.deliveryCharge = 0;
-    } else {
-      cart.deliveryCharge = 20;
     }
   }
   if (distance > 2) {
@@ -46,6 +44,8 @@ const CheckoutScreen = ({ match, history }) => {
     } else {
       cart.deliveryCharge = Number(Math.ceil(distance) * 10);
     }
+  } else {
+    cart.deliveryCharge = 20;
   }
 
   cart.taxPrice = addDecimals(Number((0.05 * cart.basePrice).toFixed(2)));
@@ -295,8 +295,10 @@ const CheckoutScreen = ({ match, history }) => {
                       <div className="proceed-check">
                         <LinkContainer to="/payment">
                           <div
-                            style={{ color: "#ffffff" }}
-                            className="btn-primary-gold btn-medium"
+                            className="btn-primary-gold-address btn-medium"
+                            onClick={() => {
+                              dispatch({ type: ORDER_CREATE_RESET });
+                            }}
                           >
                             Confirm Order
                           </div>

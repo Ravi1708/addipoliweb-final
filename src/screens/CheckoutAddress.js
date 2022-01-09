@@ -289,6 +289,9 @@ const CheckoutAddress = ({ history }) => {
                       className="shop-checkout-left"
                       data-wow-duration="1000ms"
                       data-wow-delay="300ms"
+                      style={{
+                        marginTop: "10px",
+                      }}
                     >
                       <h5>Manage Address</h5>
                       {addresses &&
@@ -351,6 +354,9 @@ const CheckoutAddress = ({ history }) => {
                     className="col-md-8 col-sm-12 col-xs-12 wow fadeInDown"
                     data-wow-duration="1000ms"
                     data-wow-delay="300ms"
+                    style={{
+                      marginTop: "10px",
+                    }}
                   >
                     <div className="shop-checkout-left">
                       <h5>Add New Address</h5>

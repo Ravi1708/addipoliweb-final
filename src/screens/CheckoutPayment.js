@@ -154,7 +154,7 @@ const CheckoutPayment = ({ history }) => {
     if (success) {
       // eslint-disable-next-line
       history.push(`/ordercompleted/${order.orderId}`);
-      dispatch({ type: ORDER_CREATE_RESET });
+
       dispatch({ type: ONLINE_PAY_RESET });
       dispatch({ type: VERIFY_PAY_RESET });
     }

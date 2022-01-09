@@ -562,7 +562,7 @@ const Header = ({ location, match }) => {
                         <span style={{ padding: "0px 10px" }}>My Account</span>
                       </a>
                       <ul>
-                        <li>
+                        {/* <li>
                           <a to="/profile">
                             <i
                               className="fa fa-angle-right"
@@ -579,7 +579,7 @@ const Header = ({ location, match }) => {
                             ></i>
                             My Address
                           </a>
-                        </li>
+                        </li> */}
                         <li>
                           <a href="/history">
                             <i
@@ -928,20 +928,9 @@ const Header = ({ location, match }) => {
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
-                  width: "100%",
                 }}
               >
-                <p
-                  style={{
-                    width: "50px",
-                    textAlign: "center",
-                    backgroundColor: "#04e04c",
-                    borderRadius: "50px",
-                    height: "50px",
-                  }}
-                >
-                  +91
-                </p>
+                <p>+91</p>
                 <input
                   type="text"
                   name="phone"
@@ -961,7 +950,6 @@ const Header = ({ location, match }) => {
                     }
                   }}
                   // onChange={(e) => setphoneNumber(e.target.value)}
-                  style={{ width: "85%" }}
                 />
               </div>
               {otpError && <Message>{otpError}</Message>}
@@ -1055,20 +1043,9 @@ const Header = ({ location, match }) => {
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
-                  width: "100%",
                 }}
               >
-                <p
-                  style={{
-                    width: "50px",
-                    textAlign: "center",
-                    backgroundColor: "#04e04c",
-                    borderRadius: "50px",
-                    height: "50px",
-                  }}
-                >
-                  +91
-                </p>
+                <p>+91</p>
                 <input
                   type="text"
                   name="phone"
@@ -1086,7 +1063,6 @@ const Header = ({ location, match }) => {
                       setphoneNumber(mobile);
                     }
                   }}
-                  style={{ width: "85%" }}
                 />
               </div>
               {otpError && <Message>{otpError}</Message>}
