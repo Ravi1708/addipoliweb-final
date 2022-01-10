@@ -124,7 +124,7 @@ const CheckoutPayment = ({ history }) => {
 
   cart.totalPrice = (
     Number(cart.itemsPrice) +
-    Number(cart.shippingPrice) +
+    Number(cart.deliveryCharge) +
     Number(cart.taxPrice)
   ).toFixed(2);
 
