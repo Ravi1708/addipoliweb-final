@@ -113,10 +113,28 @@ const Footer = () => {
                     <a> Radhe Food Industries</a>{" "}
                   </span>
                 </div>
-                <div className="col-md-3 col-sm-3 col-xs-12 copyright-before">
+                <div
+                  className="col-md-3 col-sm-3 col-xs-12 copyright-before"
+                  style={{ fontSize: "17px" }}
+                >
                   <span>
-                    Developed by
-                    <a href="https://sr-mediatech.com/"> SR Media Tech</a>{" "}
+                    Design and Developed by{" "}
+                    <a
+                      href="https://makinfratek.com/"
+                      style={{ fontWeight: "bold" }}
+                    >
+                      MakinfraTek
+                    </a>{" "}
+                  </span>
+                  <span>
+                    Crafted by
+                    <a
+                      href="https://sr-mediatech.com/"
+                      style={{ fontWeight: "bold" }}
+                    >
+                      {" "}
+                      SR Media Tech
+                    </a>{" "}
                   </span>
                 </div>
               </div>
